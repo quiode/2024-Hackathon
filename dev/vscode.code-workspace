@@ -20,6 +20,7 @@
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
       "Hackathon"
-    ]
+    ],
+    "java.configuration.updateBuildConfiguration": "interactive"
   }
 }
