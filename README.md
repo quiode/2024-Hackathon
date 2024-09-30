@@ -4,6 +4,15 @@ A Repository for all the code for the [2024 Hackathon](https://viscon.vis.ethz.c
 
 ## Used Tools
 
+### Frontend
+
+- [Angular](https://angular.dev/)
+- [Tailwind](https://tailwindcss.com/)
+
+### Backend
+
+- [Spring Boot](https://spring.io/projects/spring-boot)
+
 // TODO
 
 ## Dev Setup
