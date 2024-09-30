@@ -18,8 +18,8 @@ A Repository for all the code for the [2024 Hackathon](https://viscon.vis.ethz.c
 
 ### Recommended IDE's
 
-- Frontend: VS-Code
-- Backend: IntelliJ
+- Frontend: [VS-Code](https://code.visualstudio.com/)
+- Backend: [IntelliJ](https://www.jetbrains.com/idea/)
 
 ### VS-Code
 
