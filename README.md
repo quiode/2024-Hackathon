@@ -15,6 +15,10 @@ Install all recommended extensions.
 
 ### Frontend
 
+Install [pnpm](https://pnpm.io/installation).
+Run `pnpm install` to install all dependencies.
+Execute `pnpm start` to start the dev server.
+
 ### Backend
 
 ### Docker
