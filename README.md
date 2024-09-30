@@ -12,8 +12,7 @@ A Repository for all the code for the [2024 Hackathon](https://viscon.vis.ethz.c
 ### Backend
 
 - [Spring Boot](https://spring.io/projects/spring-boot)
-
-// TODO
+- [PostgreSQL](https://www.postgresql.org/)
 
 ## Dev Setup
 
