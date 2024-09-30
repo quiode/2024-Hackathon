@@ -19,7 +19,10 @@
   "settings": {
     "java.compile.nullAnalysis.mode": "automatic",
     "cSpell.words": [
-      "Hackathon"
+      "Azaronak",
+      "Dziyana",
+      "Hackathon",
+      "Pamberger"
     ],
     "java.configuration.updateBuildConfiguration": "interactive"
   }
