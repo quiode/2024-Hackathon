@@ -8,6 +8,7 @@ A Repository for all the code for the [2024 Hackathon](https://viscon.vis.ethz.c
 
 - [Angular](https://angular.dev/)
 - [Tailwind](https://tailwindcss.com/)
+- [RxJS](https://rxjs.dev/)
 
 ### Backend
 
@@ -55,3 +56,7 @@ A folder, called `db` inside dev will be created which contains the database dat
 ## Building
 
 // TODO
+
+## Code Style
+
+So far only one style guide: Make as much **immutable** as possible!
