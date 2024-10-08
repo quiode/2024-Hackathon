@@ -38,6 +38,8 @@ Execute `pnpm start` to start the dev server.
 
 ### Backend
 
+Use Java Version `22`.
+
 Install the dependencies by going inside the `backend` folder and start the `mvnw` executable with the argument `install` like this: `./mvnw install`.
 
 Start the backend by executing the main function inside the `BackendApplication.java` class.
