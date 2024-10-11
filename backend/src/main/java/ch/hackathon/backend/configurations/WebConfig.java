@@ -14,6 +14,7 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(userInterceptor);
+        registry.addInterceptor(userInterceptor) // map user object
+                .excludePathPatterns("/user/register"); // exclude path to register new user
     }
 }
