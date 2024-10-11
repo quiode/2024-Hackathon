@@ -31,7 +31,7 @@ public class UserService {
       throw new ResponseStatusException(HttpStatus.CONFLICT, "User with that mail already exists");
     }
 
-    User user = new User(null, name, mail);
+    User user = new User(null, name, mail, new HashSet<>(), null);
 
     return userRepository.save(user);
   }

@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -26,13 +28,12 @@ public class User {
   /**
    * The lectures this student attends
    */
-  // @Column(nullable = false)
-  // @ManyToMany
-  // private Set<Lecture> lectures = new HashSet<>();
+  @ManyToMany
+  private Set<Lecture> lectures;
 
   /**
    *
    */
-  // @ManyToOne
-  // private Game currentGame;
+  @ManyToOne
+  private Game currentGame;
 }

@@ -17,12 +17,12 @@ public class Game {
   @GeneratedValue
   private Long id;
 
-  // @ManyToOne
-  // private Lecture lecture;
+  @ManyToOne
+  private Lecture lecture;
 
-  // @ManyToOne
-  // private Professor professor;
+  @ManyToOne
+  private Professor professor;
 
-  // @ManyToOne
-  // private LectureTimeframe timeframe;
+  @ManyToOne
+  private LectureTimeframe timeframe;
 }
