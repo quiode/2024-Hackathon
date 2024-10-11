@@ -24,16 +24,16 @@ public class UserInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
     String username = request.getHeader("X-authentik-username");
-    String email = request.getHeader("X-authentik-email");
+    String mail = request.getHeader("X-authentik-mail");
     String name = request.getHeader("X-authentik-name");
 
-    if (username == null || email == null || name == null) {
+    if (username == null || mail == null || name == null) {
       // headers not set, throw error
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Set the corret X-authentik headers!");
     }
 
     // find user
-    User user = userService.findUserByMail(email)
+    User user = userService.findUserByMail(mail)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
             "User not found, please create an account first!"));
 

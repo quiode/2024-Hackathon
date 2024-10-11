@@ -15,8 +15,8 @@ public class UserController {
   private final UserService userService;
 
   @PostMapping("/register")
-  public User registerUser(@RequestHeader("X-authentik-username") String mail,
+  public User registerUser(@RequestHeader("X-authentik-mail") String mail,
       @RequestHeader("X-authentik-name") String name) {
-    return userService.createUser(mail, name);
+    return userService.createUser(name, mail);
   }
 }
