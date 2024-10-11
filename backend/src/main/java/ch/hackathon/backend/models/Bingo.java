@@ -1,16 +1,11 @@
 package ch.hackathon.backend.models;
 
-import java.util.List;
-
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -26,12 +21,16 @@ public class Bingo {
   @Id
   @GeneratedValue
   private Long id;
+
   @ManyToOne
   private User user;
+
   @ManyToOne
   private Game game;
+
   @Column(nullable = false)
   private Integer height;
+
   @Column(nullable = false)
   private Integer width;
 

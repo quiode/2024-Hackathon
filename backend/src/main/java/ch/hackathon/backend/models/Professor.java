@@ -16,6 +16,7 @@ public class Professor {
   @Id
   @GeneratedValue
   private Long id;
+
   @Column(nullable = false)
   private String name;
 }
