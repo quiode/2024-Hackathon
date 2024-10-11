@@ -22,11 +22,11 @@ public class Bingo {
   @GeneratedValue
   private Long id;
 
-  @ManyToOne
-  private User user;
+  // @ManyToOne
+  // private UserM owner;
 
-  @ManyToOne
-  private Game game;
+  // @ManyToOne
+  // private Game game;
 
   @Column(nullable = false)
   private Integer height;
@@ -37,6 +37,6 @@ public class Bingo {
   /**
    * The card grid for the Bingo card (In ROW-MAJOR order as heightXwidth matrix)
    */
-  @ManyToMany
-  private List<Card> cardMatrix;
+  // @ManyToMany
+  // private List<Card> cardMatrix;
 }

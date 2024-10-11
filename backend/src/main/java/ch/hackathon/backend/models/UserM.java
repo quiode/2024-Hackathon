@@ -1,10 +1,10 @@
 package ch.hackathon.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -13,8 +13,8 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
-public class User {
+@AllArgsConstructor
+public class UserM {
   @Id
   @GeneratedValue
   private Long id;
@@ -28,13 +28,13 @@ public class User {
   /**
    * The lectures this student attends
    */
-  @Column(nullable = false)
-  @ManyToMany
-  private Set<Lecture> lectures = new HashSet<>();
+  // @Column(nullable = false)
+  // @ManyToMany
+  // private Set<Lecture> lectures = new HashSet<>();
 
   /**
    *
    */
-  @ManyToOne
-  private Game currentGame;
+  // @ManyToOne
+  // private Game currentGame;
 }

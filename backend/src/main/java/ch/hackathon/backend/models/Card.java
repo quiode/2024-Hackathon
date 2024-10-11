@@ -33,21 +33,21 @@ public class Card {
    * The user that designed this card
    */
   @ManyToOne
-  private User creator;
+  private UserM creator;
 
   /**
    * We save all users that upvoted this post to
    * be able to prevent multiple upvotes
    */
   @ManyToMany
-  private Set<User> upvotes;
+  private Set<UserM> upvotes;
 
   /**
    * We save all users that downvoted this post to
    * be able to prevent multiple downvotes
    */
   @ManyToMany
-  private Set<User> downvotes;
+  private Set<UserM> downvotes;
 
   /**
    * Cards are always created for specific lectures
@@ -60,5 +60,4 @@ public class Card {
    */
   @ManyToOne
   private Professor professor;
-
 }

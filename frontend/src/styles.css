@@ -3,10 +3,29 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom styles */
+.custom-button {
+  @apply bg-blue-500 text-white py-2 px-4 rounded-lg shadow-lg hover:bg-blue-600;
+}
+
+.custom-card {
+  @apply p-6 max-w-sm bg-fuchsia-400 rounded-lg border border-fuchsia-400 hover:bg-fuchsia-300 hover:border-fuchsia-300 shadow-md;
+}
+
+.text-large {
+  @apply text-5xl font-bold text-gray-100;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
   'GRAD' 0,
   'opsz' 24
+}
+
+body {
+  @apply
+  text-gray-700
+  dark:text-gray-100
 }

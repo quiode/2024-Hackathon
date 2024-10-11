@@ -28,13 +28,15 @@ public class Lecture {
    * 
    * must contain at least one element
    */
-  @ManyToMany
-  private Set<Professor> professors;
+  // @ManyToMany
+  // private Set<Professor> professors;
 
   /**
    * we create a separate LectureTimeframe model to make handling
    * the time frames easier (we don't want deeply nested collections)
    */
-  @ManyToMany(cascade = CascadeType.ALL)
-  private Set<LectureTimeframe> dates;
+
+  // @ManyToMany(cascade = CascadeType.ALL)
+  // private Set<LectureTimeframe> dates;
+
 }
