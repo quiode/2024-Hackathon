@@ -1,0 +1,61 @@
+services:
+  backend:
+    depends_on:
+      - db
+    container_name: backend
+    build:
+      context: ./backend/
+      dockerfile: ./Dockerfile
+    expose:
+      - 8080
+    environment:
+      - DB_DOMAIN=db
+    labels:
+      traefik.enable: true
+      traefik.http.routers.backend.entrypoints: web
+      traefik.http.routers.backend.rule: PathPrefix(`/api`)
+      traefik.http.services.backend.loadbalancer.server.port: 8080
+    restart: always
+
+  frontend:
+    depends_on:
+      - backend
+    container_name: frontend
+    build:
+      context: ./frontend/
+      dockerfile: ./Dockerfile
+    expose:
+      - 80
+    labels:
+      traefik.enable: true
+      traefik.http.routers.frontend.entrypoints: web
+      traefik.http.routers.frontend.rule: PathPrefix(`/`)
+      traefik.http.services.frontend.loadbalancer.server.port: 80
+    restart: always
+
+  db:
+    image: postgres
+    container_name: db
+    restart: always
+    expose:
+      - 5432
+    volumes:
+      - /app/db:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=${DB_PASSWORD:-1234} # TODO: Change on server
+      - POSTGRES_DB=hackathon
+
+  traefik:
+    image: traefik
+    container_name: traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    command:
+      - --api.insecure=true
+      - --providers.docker=true
+      - --entrypoints.web.address=:80
+    ports:
+      - 80:80
+      - 8080:8080
+    restart: always
