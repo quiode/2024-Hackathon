@@ -6,9 +6,9 @@ import { LectureCardComponent } from '../lecture-card/lecture-card.component';
   selector: 'app-dashbord',
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive, LectureCardComponent],
-  templateUrl: './dashbord.component.html',
-  styleUrl: './dashbord.component.css'
+  templateUrl: './dashboard.component.html',
+  styleUrl: './dashboard.component.css'
 })
-export class DashbordComponent {
+export class DashboardComponent {
 
 }
