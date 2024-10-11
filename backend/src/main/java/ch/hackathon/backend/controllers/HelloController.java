@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
   @GetMapping("hello")
   private String hello(@RequestAttribute User user) {
-    // log.info("Hello {}", user.getName());
+    log.info("Hello {}", user.getName());
     return "Hello World";
   }
 }
