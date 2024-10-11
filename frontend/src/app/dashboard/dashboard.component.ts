@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LectureCardComponent } from '../lecture-card/lecture-card.component';
+import {NgIf} from "@angular/common";
+import {Game} from "../game";
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, LectureCardComponent],
+    imports: [RouterOutlet, RouterLink, RouterLinkActive, LectureCardComponent, NgIf],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
