@@ -6,11 +6,10 @@ services:
     build:
       context: ./backend/
       dockerfile: ./Dockerfile
-      no_cache: true
     expose:
       - 8080
-    volumes:
-      - /app/backend:/app
+    environment:
+      - DB_DOMAIN=db
     labels:
       traefik.enable: true
       traefik.http.routers.backend.entrypoints: web
@@ -25,7 +24,6 @@ services:
     build:
       context: ./frontend/
       dockerfile: ./Dockerfile
-      no_cache: true
     expose:
       - 80
     labels:
@@ -44,9 +42,9 @@ services:
     volumes:
       - /app/db:/var/lib/postgresql/data
     environment:
-      - POSTGRES_USER=${DB_USER:-admin}
+      - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=${DB_PASSWORD:-1234} # TODO: Change on server
-      - POSTGRES_DB=${DB_NAME:-hackathon}
+      - POSTGRES_DB=hackathon
 
   traefik:
     image: traefik
