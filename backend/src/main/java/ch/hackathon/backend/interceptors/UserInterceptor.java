@@ -24,7 +24,7 @@ public class UserInterceptor implements HandlerInterceptor {
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
     String username = request.getHeader("X-authentik-username");
-    String mail = request.getHeader("X-authentik-mail");
+    String mail = request.getHeader("X-authentik-email");
     String name = request.getHeader("X-authentik-name");
 
     if (username == null || mail == null || name == null) {
