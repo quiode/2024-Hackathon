@@ -3,6 +3,7 @@ package ch.hackathon.backend.models;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,10 +12,18 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Book {
+public class Game {
 
-    @Id
-    @GeneratedValue
-    private Long id;
-    private String name;
+  @Id
+  @GeneratedValue
+  private Long id;
+  @ManyToOne
+  private Lecture lecture;
+
+  @ManyToOne
+  private Professor professor;
+
+  @ManyToOne
+  private LectureTimeframe timeframe;
+
 }
