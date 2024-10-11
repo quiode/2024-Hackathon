@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("")
 @Slf4j
 public class HelloController {
-    @GetMapping("hello")
-    private String hello(@RequestAttribute User user) {
-        log.info("Hello {}", user.getName());
-        return "Hello World";
-    }
+  @GetMapping("hello")
+  private String hello(@RequestAttribute User user) {
+    log.info("Hello {}", user.getName());
+    return "Hello World";
+  }
 }

@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Date;
+import java.sql.Date;
 
 @Entity
 @Getter
@@ -20,8 +20,8 @@ public class LectureTimeframe {
   private Long id;
 
   @Column(nullable = false)
-  private Date start;
+  private Date startDate;
 
   @Column(nullable = false)
-  private Date end;
+  private Date endDate;
 }

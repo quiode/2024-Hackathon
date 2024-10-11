@@ -60,5 +60,4 @@ public class Card {
    */
   @ManyToOne
   private Professor professor;
-
 }

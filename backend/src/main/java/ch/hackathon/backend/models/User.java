@@ -1,19 +1,19 @@
 package ch.hackathon.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
-@ToString
+@AllArgsConstructor
+@Table(name = "UserTable")
 public class User {
   @Id
   @GeneratedValue
@@ -28,9 +28,8 @@ public class User {
   /**
    * The lectures this student attends
    */
-  @Column(nullable = false)
   @ManyToMany
-  private Set<Lecture> lectures = new HashSet<>();
+  private Set<Lecture> lectures;
 
   /**
    *

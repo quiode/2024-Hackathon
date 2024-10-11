@@ -23,7 +23,7 @@ public class Bingo {
   private Long id;
 
   @ManyToOne
-  private User user;
+  private User owner;
 
   @ManyToOne
   private Game game;

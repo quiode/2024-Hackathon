@@ -35,6 +35,8 @@ public class Lecture {
    * we create a separate LectureTimeframe model to make handling
    * the time frames easier (we don't want deeply nested collections)
    */
+
   @ManyToMany(cascade = CascadeType.ALL)
   private Set<LectureTimeframe> dates;
+
 }
