@@ -13,10 +13,10 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Game {
-
   @Id
   @GeneratedValue
   private Long id;
+
   @ManyToOne
   private Lecture lecture;
 
@@ -25,5 +25,4 @@ public class Game {
 
   @ManyToOne
   private LectureTimeframe timeframe;
-
 }
