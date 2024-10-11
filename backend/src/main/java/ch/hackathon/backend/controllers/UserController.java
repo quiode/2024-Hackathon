@@ -1,6 +1,6 @@
 package ch.hackathon.backend.controllers;
 
-import ch.hackathon.backend.models.UserM;
+import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +15,7 @@ public class UserController {
   private final UserService userService;
 
   @PostMapping("/register")
-  public UserM registerUser(@RequestHeader("X-authentik-username") String mail,
+  public User registerUser(@RequestHeader("X-authentik-username") String mail,
       @RequestHeader("X-authentik-name") String name) {
     return userService.createUser(mail, name);
   }

@@ -31,33 +31,33 @@ public class Card {
 
   /**
    * The user that designed this card
-   */
-  @ManyToOne
-  private UserM creator;
+//    */
+//   @ManyToOne
+//   private UserM creator;
 
-  /**
-   * We save all users that upvoted this post to
-   * be able to prevent multiple upvotes
-   */
-  @ManyToMany
-  private Set<UserM> upvotes;
+//   /**
+//    * We save all users that upvoted this post to
+//    * be able to prevent multiple upvotes
+//    */
+//   @ManyToMany
+//   private Set<UserM> upvotes;
 
-  /**
-   * We save all users that downvoted this post to
-   * be able to prevent multiple downvotes
-   */
-  @ManyToMany
-  private Set<UserM> downvotes;
+//   /**
+//    * We save all users that downvoted this post to
+//    * be able to prevent multiple downvotes
+//    */
+//   @ManyToMany
+//   private Set<UserM> downvotes;
 
-  /**
-   * Cards are always created for specific lectures
-   */
-  @ManyToOne
-  private Lecture lecture;
+//   /**
+//    * Cards are always created for specific lectures
+//    */
+//   @ManyToOne
+//   private Lecture lecture;
 
-  /**
-   * Cards are always references to a specific professors habits, words etc.
-   */
-  @ManyToOne
-  private Professor professor;
+//   /**
+//    * Cards are always references to a specific professors habits, words etc.
+//    */
+//   @ManyToOne
+//   private Professor professor;
 }

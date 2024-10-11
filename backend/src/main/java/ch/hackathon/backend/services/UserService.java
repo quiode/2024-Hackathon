@@ -1,6 +1,6 @@
 package ch.hackathon.backend.services;
 
-import ch.hackathon.backend.models.UserM;
+import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,20 +18,20 @@ public class UserService {
   /**
    * Finds a user by email and returns am empty optional if not found
    */
-  public Optional<UserM> findUserByMail(String mail) {
+  public Optional<User> findUserByMail(String mail) {
     return userRepository.findByMail(mail);
   }
 
   /**
    * Creates a user with specified values and returns it
    */
-  public UserM createUser(String name, String mail) {
+  public User createUser(String name, String mail) {
     // check if user already exists
     if (findUserByMail(mail).isPresent()) {
       throw new ResponseStatusException(HttpStatus.CONFLICT, "User with that mail already exists");
     }
 
-    UserM user = new UserM(null, name, mail);
+    User user = new User(null, name, mail);
 
     return userRepository.save(user);
   }

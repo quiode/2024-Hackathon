@@ -4,7 +4,7 @@
 
 package ch.hackathon.backend.interceptors;
 
-import ch.hackathon.backend.models.UserM;
+import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.services.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -33,7 +33,7 @@ public class UserInterceptor implements HandlerInterceptor {
     }
 
     // find user
-    UserM user = userService.findUserByMail(email)
+    User user = userService.findUserByMail(email)
         .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND,
             "User not found, please create an account first!"));
 
