@@ -6,6 +6,7 @@ services:
     build:
       context: ./backend/
       dockerfile: ./Dockerfile
+      no_cache: true
     expose:
       - 8080
     volumes:
@@ -24,6 +25,7 @@ services:
     build:
       context: ./frontend/
       dockerfile: ./Dockerfile
+      no_cache: true
     expose:
       - 80
     labels:
