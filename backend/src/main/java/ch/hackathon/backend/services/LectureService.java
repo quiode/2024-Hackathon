@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Instant;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -25,6 +24,10 @@ public class LectureService {
   private final LectureRepository lectureRepository;
   private final ProfessorRepository professorRepository;
   private final LectureTimeframeRepository lectureTimeframeRepository;
+
+  public Optional<Lecture> getLectureById(Long id) {
+    return lectureRepository.findById(id);
+  }
 
    /**
    * Creates a with specified values and returns it

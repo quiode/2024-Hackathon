@@ -1,6 +1,7 @@
 package ch.hackathon.backend.controllers;
 
 import ch.hackathon.backend.models.User;
+import ch.hackathon.backend.services.LectureService;
 import ch.hackathon.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -10,12 +11,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class UserController {
   private final UserService userService;
+  private final LectureService lectureService;
 
   @PostMapping("/register")
   public User registerUser(@RequestHeader("X-authentik-email") String mail,
       @RequestHeader("X-authentik-name") String name) {
     return userService.createUser(name, mail);
   }
+
+
 
   /**
    * Returns the current user
