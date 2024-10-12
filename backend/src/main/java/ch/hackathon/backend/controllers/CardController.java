@@ -10,16 +10,21 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collection;
+import java.util.Set;
+
 @RestController
 @RequestMapping("/card")
 @RequiredArgsConstructor
 public class CardController {
     private final CardService cardService;
 
+    /**
+     * Get and pass on all necessary data to create a new card.
+     */
     @PostMapping("/create")
     public Card createCard(@RequestAttribute User creator,
                            @RequestBody CreateCardDTO ccdto) {
-        //Get and pass on all necessary data to create a new card.
         try{
             return cardService.createCard(creator, ccdto.getText(), ccdto.getLectId(), ccdto.getProfId());
         }
@@ -28,7 +33,17 @@ public class CardController {
         }
     }
 
-    /*
+    /**
+     * Returns a collection of all cards of a lecture.
+     * @param lectId
+     * @return cardsOfLecture
+     */
+    @PostMapping("/card/byLecture/{lectId}")
+    public Collection<Card> getCardsOfLecture(@PathVariable long lectId) {
+        return cardService.getCardsOfLecture(lectId);
+    }
+
+    /**
      * Saves that the given user has now upvoted the given card.
      */
     @PostMapping("/upvote/{cardId}")
@@ -42,7 +57,7 @@ public class CardController {
 
     }
 
-    /*
+    /**
      * Saves that the given user has now downvoted the given card.
      */
     @PostMapping("/downvote/{cardId}")

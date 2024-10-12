@@ -25,25 +25,22 @@ public class CardService {
         Set<User> upvotes = new LinkedHashSet<>();
         Set<User> downvotes = new LinkedHashSet<>();
 
+        //Get Optionals from Ids.
         Optional<Lecture> optLect =  lectureRepository.findById(lectId);
         Optional<Professor> optProf = professorRepository.findById(profId);
 
-        if(optLect.isEmpty()) {
-            throw new IllegalArgumentException("No Lecture with given lectId exists!");
-        }
-        if(optProf.isEmpty()) {
-            throw new IllegalArgumentException("No Professor with given profId exists!");
-        }
-        Lecture lecture = optLect.get();
-        Professor prof = optProf.get();
+        //Get Lecture, or throw an Exception.
+        Lecture lecture = optLect.orElseThrow(() -> new IllegalArgumentException("No Lecture with given lectId exists!"));
+        Professor prof = optProf.orElseThrow(() -> new IllegalArgumentException("No Professor with given profId exists!"));
 
+        //Create card and save it in the db.
         Card card = new Card(null, text, creationDate, creator,
                 upvotes, downvotes, lecture, prof);
         return cardRepository.save(card);
     }
 
-    /*
-     * Cast a vote for a card. Throws a IllegalArgumentException.
+    /**
+     * Cast a vote for a card. Throws a IllegalArgumentException if theres no card with cardId.
      */
     public void vote(User user, Long cardId, Vote vote){
         Optional<Card> optionalCard = cardRepository.findById(cardId);
@@ -66,4 +63,10 @@ public class CardService {
         }
     }
 
+    /**
+     * Gets all Cards of a lecture out of the db.
+     */
+    public Collection<Card> getCardsOfLecture(long lectId) {
+        return cardRepository.findByLecture_Id(lectId);
+    }
 }
