@@ -2,6 +2,7 @@
 @tailwind components;
 .enter-game-button{
   @apply
+  bg-lime-400
   rounded-full
   shadow-md;
 

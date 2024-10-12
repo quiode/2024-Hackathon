@@ -7,8 +7,8 @@
     <p> {{ currentLectureGame.professors }} </p>
     <p> {{currentLectureGame.startDate }}  </p>
   </div>
-  <div>
-    <button @if(currentLecture.isUpcoming) class="enter-game-button p-1"> Enter Game!</button>
+  <div @if(currentLecture.isUpcoming){}>
+    <button  class="enter-game-button p-4 "> Enter Game!</button>
   </div>
     </div>
   <!-- TODO: 'Enter Game' button -->

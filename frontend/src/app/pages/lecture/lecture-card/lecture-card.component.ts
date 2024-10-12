@@ -29,5 +29,5 @@ function isUpcoming(date: Date) : boolean {
   const output = today.getFullYear() === date.getFullYear() &&
     today.getMonth() === date.getMonth() &&
     today.getDate() === date.getDate();
-  return true; //return output
+  return true; //return output //TODO
 }
