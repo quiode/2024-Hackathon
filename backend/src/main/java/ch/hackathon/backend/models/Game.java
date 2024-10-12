@@ -1,9 +1,7 @@
 package ch.hackathon.backend.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,17 +10,22 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Game {
   @Id
   @GeneratedValue
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
+  @JoinColumn(name = "lecture_id", nullable = false)
   private Lecture lecture;
 
-  @ManyToOne
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
+  @JoinColumn(name = "professor_id", nullable = false)
   private Professor professor;
 
-  @ManyToOne
-  private LectureTimeframe timeframe;
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
+  @JoinColumn(name = "lecture_timeframe_id", nullable = false)
+  private LectureTimeframe lectureTimeframe;
+
 }

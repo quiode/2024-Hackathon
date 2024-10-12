@@ -31,8 +31,6 @@ public class UserInterceptor implements HandlerInterceptor {
     String mail = request.getHeader("X-authentik-email");
     String name = request.getHeader("X-authentik-name");
 
-    log.debug("Incoming Request!");
-
     if (username == null || mail == null || name == null) {
       // headers not set, throw error
       throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Set the corret X-authentik headers!");
