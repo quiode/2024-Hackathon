@@ -22,10 +22,10 @@ public class CardController {
      * Get and pass on all necessary data to create a new card.
      */
     @PostMapping("/create")
-    public Card createCard(@RequestAttribute User creator,
+    public Card createCard(@RequestAttribute User user,
                            @RequestBody CreateCardDTO ccdto) {
         try{
-            return cardService.createCard(creator, ccdto.getText(), ccdto.getLectId(), ccdto.getProfId());
+            return cardService.createCard(user, ccdto.getText(), ccdto.getLectId(), ccdto.getProfId());
         }
         catch (IllegalArgumentException e){
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());

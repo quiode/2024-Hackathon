@@ -38,11 +38,13 @@ public class GameService {
     private final LectureRepository lectureRepository;
 
 
+    public Optional<Game> getById(long id) { return gameRepository.findById(id); };
 
-    public Game createGame(Lecture lecture, Professor professor, LectureTimeframe timeframe) {
+
+    public Optional<Game> createGame(Lecture lecture, Professor professor, LectureTimeframe timeframe) {
         long cardCount = cardRepository.count();
         if (cardCount == 0)
-            return null;
+            return Optional.empty();
         if (cardCount < BINGO_SIZE * BINGO_SIZE)
             log.warn("Not enough cards ({}) to fill Bingo({}x{}), using duplicates.", cardCount, BINGO_SIZE, BINGO_SIZE);
         // FIXME: this is terribly inefficient
@@ -61,7 +63,7 @@ public class GameService {
 
         
         Game game = new Game(null, lecture, professor, timeframe, new HashSet<>(), new HashSet<>(cardMatrix), BINGO_SIZE, BINGO_SIZE);
-        return gameRepository.save(game);
+        return Optional.of(gameRepository.save(game));
     }
 
     public Optional<Game> getGame(User user, long lecture_id) {
