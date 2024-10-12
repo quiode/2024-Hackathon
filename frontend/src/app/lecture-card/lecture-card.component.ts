@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import {Game} from "../game";
 
 @Component({
   selector: 'app-lecture-card',
@@ -11,7 +10,7 @@ import {Game} from "../game";
 export class LectureCardComponent {
   today : Date = new Date();
 
-  lectureGame : Game = {
+  lectureGame  = {
     endDate: new Date(2024, 11, 1, 16, 0),
     id: 11,
     professor: "Ueli Maurer",
