@@ -8,7 +8,7 @@ import lombok.Setter;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.data.annotation.CreatedDate;
 
-import java.util.Date;
+import java.time.Instant;
 import java.util.LinkedHashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -32,7 +32,7 @@ public class Card {
 
   @Column(nullable = false)
   @CreatedDate
-  private Date creationDate;
+  private Instant creationDate;
 
   /**
    * The user that designed this card

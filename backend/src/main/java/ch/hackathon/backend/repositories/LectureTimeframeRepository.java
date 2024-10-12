@@ -4,7 +4,7 @@ import ch.hackathon.backend.models.LectureTimeframe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.sql.Date;
+import java.time.Instant;
 import java.util.List;
 
 public interface LectureTimeframeRepository extends JpaRepository<LectureTimeframe, Long> {
@@ -13,5 +13,5 @@ public interface LectureTimeframeRepository extends JpaRepository<LectureTimefra
    * 
    * to find all timeframes that contain a date, just set date1 == date2
    */
-  List<LectureTimeframe> findAllByStartDateAfterAndEndDateBefore(Date date1, Date date2);
+  List<LectureTimeframe> findAllByStartDateAfterAndEndDateBefore(Instant date1, Instant date2);
 }

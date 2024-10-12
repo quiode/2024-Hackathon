@@ -10,6 +10,7 @@ import ch.hackathon.backend.repositories.ProfessorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.util.*;
 
 @RequiredArgsConstructor
@@ -20,7 +21,7 @@ public class CardService {
     private final ProfessorRepository professorRepository;
 
     public Card createCard(User creator, String text, long lectId, long profId) {
-        Date creationDate = new Date(); //Allocates the current date.
+        Instant creationDate = Instant.now(); //Allocates the current date.
         Set<User> upvotes = new LinkedHashSet<>();
         Set<User> downvotes = new LinkedHashSet<>();
 
