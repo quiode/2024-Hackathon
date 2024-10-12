@@ -1,5 +1,5 @@
 import { Lecture } from "./Lecture";
-import { Timeframe } from "./TimeFrame";
+import { Timeframe } from "./Timeframe";
 
 export interface Game {
   id: number,

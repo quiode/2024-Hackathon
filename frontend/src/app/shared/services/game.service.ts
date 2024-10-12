@@ -8,12 +8,13 @@ import { Game } from '../models/Game';
   providedIn: 'root'
 })
 export class GameService {
-  private lecture = signal<Game | null>(null);
+  private game = signal<Game | null>(null);
+  private board = signal
 
   constructor(private http: HttpClient) { }
 
   getGame(id: number): Observable<Game> {
-    let lecture = this.lecture();
+    let game = this.game();
 
     return of({
       id: 1,
@@ -22,4 +23,22 @@ export class GameService {
       timeframe: {start: 1000, end: 2000}
     })
   }
+
+  createGame(lectureId: number) {
+    let id = 1;
+    if (id == null) {
+      return null;
+    }
+    let game = this.game();
+    return of(this.getGame(id));
+  }
+
+  joinGame() {
+
+  }
+
+  getBoard() {
+
+  }
+
 }

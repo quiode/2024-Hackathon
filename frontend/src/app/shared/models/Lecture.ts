@@ -1,4 +1,4 @@
-import { Timeframe } from "./TimeFrame"
+import { Timeframe } from "./Timeframe"
 
 export interface Lecture {
   id: number,
