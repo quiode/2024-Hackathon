@@ -15,7 +15,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Service
 public class CardService {
-    /*private final CardRepository cardRepository;
+    private final CardRepository cardRepository;
 
 
     public Card createCard(User creator, String text, Lecture lecture, Professor professor) {
@@ -23,8 +23,8 @@ public class CardService {
         Set<User> upvotes = new HashSet<>();
         Set<User> downvotes = new HashSet<>();
 
-        //Card card = new Card(null, text, creationDate, creator,
-        //        upvotes, downvotes, lecture, professor);
+        Card card = new Card(null, text, creationDate, creator,
+                upvotes, downvotes, lecture, professor);
         return cardRepository.save(card);
-    }*/
+    }
 }

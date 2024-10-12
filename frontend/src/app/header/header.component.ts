@@ -1,6 +1,6 @@
 import { Component, computed } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { faMoon, faSun } from '@fortawesome/free-solid-svg-icons';
+import { faMoon, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
 import { ThemeService } from '../shared/services/theme.service';
 
 @Component({
@@ -13,6 +13,7 @@ import { ThemeService } from '../shared/services/theme.service';
 export class HeaderComponent {
   theme;
   themeIcon;
+  userIcon;
   constructor(private themeService: ThemeService) {
     this.theme = this.themeService.getTheme();
     this.themeIcon = computed(() => {
@@ -22,6 +23,9 @@ export class HeaderComponent {
         return faMoon;
       }
     });
+    this.userIcon = () => {
+      return faUser;
+    };
   }
 
   onThemeChange() {
