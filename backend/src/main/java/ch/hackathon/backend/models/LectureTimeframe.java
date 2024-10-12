@@ -8,20 +8,26 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.sql.Date;
+import java.time.Instant;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class LectureTimeframe {
+  public LectureTimeframe(Instant start, Instant end) {
+    id = null;
+    startDate = start;
+    endDate = end;
+  }
+  
   @Id
   @GeneratedValue
   private Long id;
 
   @Column(nullable = false)
-  private Date startDate;
+  private Instant startDate;
 
   @Column(nullable = false)
-  private Date endDate;
+  private Instant endDate;
 }
