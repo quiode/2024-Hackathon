@@ -10,21 +10,30 @@ import { Game } from '../../../shared/models/Game';
 })
 export class LectureCardComponent {
 
-// TODO: actually get data from backend
-   currentLectureGame: Game = {
+  // TODO: actually get data from backend
+  currentLectureGame: Game = {
     id: 11,
-    lectureId: 1,
-    lecturer: 1,
+    lecture: {
+      dates: [],
+      id: 1,
+      name: '',
+      professors: []
+    },
+    professor: {
+      id: 1,
+      name: ''
+    },
     timeframe: {
-      end: 1,
-      start: 2
+      endDate: 1,
+      id: 1,
+      startDate: 1
     }
   }
   protected readonly isUpcoming = isUpcoming;
 }
 
-function isUpcoming(date: Date) : boolean {
-  const today : Date = new Date();
+function isUpcoming(date: Date): boolean {
+  const today: Date = new Date();
 
   const output = today.getFullYear() === date.getFullYear() &&
     today.getMonth() === date.getMonth() &&

@@ -7,7 +7,7 @@ export interface Card {
   text: string;
   creationDate: number;
   creator: User;
-  upvoted: User[];
+  upvotes: User[];
   downvotes: User[];
   lecture: Lecture;
   professor: Professor;

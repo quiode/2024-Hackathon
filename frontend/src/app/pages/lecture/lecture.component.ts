@@ -23,11 +23,20 @@ export class LectureComponent {
     creator: {
       currentGame: {
         id: 1,
-        lectureId: 1,
-        lecturer: 1,
+        lecture: {
+          dates: [],
+          id: 1,
+          name: '',
+          professors: []
+        },
+        professor: {
+          id: 1,
+          name: ''
+        },
         timeframe: {
-          end: 1,
-          start: 1
+          endDate: 1,
+          startDate: 1,
+          id: 1
         }
       },
       id: 1,
@@ -36,14 +45,17 @@ export class LectureComponent {
       name: "dominik schwaiger"
     },
     downvotes: [],
-    upvoted: [],
+    upvotes: [],
     lecture: {
       dates: [],
       id: 1,
       name: 'some lecture',
       professors: []
     },
-    professor: {},
+    professor: {
+      id: 1,
+      name: 'frank'
+    },
     text: 'some card text'
   }]); // TODO: dev var
 

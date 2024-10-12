@@ -9,7 +9,6 @@ import { Game } from '../models/Game';
 })
 export class GameService {
   private game = signal<Game | null>(null);
-  private board = signal
 
   constructor(private http: HttpClient) { }
 
@@ -18,10 +17,18 @@ export class GameService {
 
     return of({
       id: 1,
-      lectureId: 1,
-      lecturer: 1,
-      timeframe: {start: 1000, end: 2000}
-    })
+      timeframe: {startDate: 1000, endDate: 2000, id: 1},
+      lecture: {
+        dates: [],
+        id: 1,
+        name: 'karl',
+        professors: []
+      },
+      professor: {
+        id: 1, 
+        name: 'Ueli'
+      }
+    } satisfies Game)
   }
 
   createGame(lectureId: number) {
