@@ -22,7 +22,7 @@ public class DevService {
 
    
 
-    public void generateFakeDate() {
+    public void generateFakeData() {
         
     }
 
