@@ -1,6 +1,8 @@
 package ch.hackathon.backend.services;
 
+import ch.hackathon.backend.models.Game;
 import ch.hackathon.backend.models.User;
+import ch.hackathon.backend.repositories.GameRepository;
 import ch.hackathon.backend.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
   private final UserRepository userRepository;
+  private final GameRepository gameRepository;
 
   /**
    * Finds a user by email and returns am empty optional if not found
@@ -34,5 +37,16 @@ public class UserService {
     User user = new User(null, name, mail, new HashSet<>(), null);
 
     return userRepository.save(user);
+  }
+
+  public Game joinGame(User user, long gameId) {
+    Optional<Game> game = gameRepository.findById(gameId);
+    if (game.isPresent()) {
+      user.setCurrentGame(game.get());
+      userRepository.save(user);
+      return game.get();
+    } else {
+      throw new IllegalArgumentException("Invalid gameId provided");
+    }  
   }
 }

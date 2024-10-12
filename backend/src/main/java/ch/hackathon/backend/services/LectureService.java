@@ -35,7 +35,7 @@ public class LectureService {
   public Lecture createLecture(String name, Set<String> professorNames, Set<Pair<Instant, Instant>> dates) {
     // check if lecture already exists
     if (lectureRepository.findByName(name).isPresent()) {
-      throw new ResponseStatusException(HttpStatus.CONFLICT, "Lecture with that mail already exists");
+      throw new IllegalArgumentException("Lecture with this name already exists");
     }
     // get professors from DB or create them if they do not exist
     Set<Professor> professors = new HashSet<>(); 
@@ -63,8 +63,11 @@ public class LectureService {
 
 
 
-    Lecture user = new Lecture(name, professors, datesTimeframe);
-
-    return lectureRepository.save(user);
+    // Lecture user = new Lecture(name, professors, datesTimeframe);
+    Lecture lecture = new Lecture(name, new HashSet<>(), new HashSet<>());
+    Lecture lectureWithId = lectureRepository.save(lecture);
+    lectureWithId.setProfessors(professors);
+    lectureWithId.setDates(datesTimeframe);
+    return lectureRepository.save(lectureWithId);    // return null;
   }
 }
