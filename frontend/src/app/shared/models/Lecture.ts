@@ -1,9 +1,9 @@
-import { Timeframe } from "./Timeframe"
+import { LectureTimeframe } from './LectureTimeframe';
+import { Professor } from './Professor';
 
 export interface Lecture {
-  id: number,
-  title: String,
-  lecturers: Array<number>,
-  dates: Array<Timeframe>
-  cards: Array<number>
+  id: number;
+  name: string;
+  professors: Professor[];
+  dates: LectureTimeframe[];
 }

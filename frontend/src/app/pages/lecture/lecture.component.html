@@ -1,8 +1,9 @@
 <div class="wrapper">
-<div class="title">{{ lecture()?.title }}</div>
+  @if (lecture(); as lecture) {
+  <div class="title">{{ lecture.name }}</div>
   <div class="lecturers">
-    @for (lecturer of lecture()?.lecturers; track lecturer; let last = $last) {
-      <a href="" class="lecturer">{{ lecturer }}</a>@if (!last) {<span>, </span>}
+    @for (lecturer of lecture.professors; track $index; let last = $last) {
+    <a href="" class="lecturer">{{ lecturer }}</a>@if (!last) {<span>, </span>}
     }
   </div>
   <div class="live-game">
@@ -13,12 +14,15 @@
 
     }
     @else {
-      <span>No current live game...</span>
+    <span>No current live game...</span>
     }
   </div>
 
   <div>
     <h1>Cards</h1>
-    <app-cards-view [cards]="cards()" (cardAdd)="onCardAdd($event)"></app-cards-view>
+    <app-cards-view [lecture]="lecture" [cards]="cards()" (cardAdd)="onCardAdd($event)"></app-cards-view>
   </div>
+  } @else {
+  <h1>Lecture not found?!?</h1>
+  }
 </div>

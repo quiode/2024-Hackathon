@@ -17,7 +17,27 @@ export class LectureComponent {
   onCardAdd(card: Card) { // TODO: dev func
     this.cards.update(cards => [...cards, card]);
   }
-  cards = signal<Card[]>([]); // TODO: dev var
+  cards = signal<Card[]>([{
+    id: 1,
+    creationDate: Date.now(),
+    creator: {
+      currentGame: {},
+      id: 1,
+      lectures: [],
+      mail: "domi",
+      name: "dominik schwaiger"
+    },
+    downvotes: [],
+    upvoted: [],
+    lecture: {
+      dates: [],
+      id: 1,
+      name: 'some lecture',
+      professors: []
+    },
+    professor: {},
+    text: 'some card text'
+  }]); // TODO: dev var
 
   lecture;
   // lectureData;
