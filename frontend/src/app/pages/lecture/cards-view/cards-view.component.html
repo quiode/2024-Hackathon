@@ -18,7 +18,7 @@
     <div class="basis-1/4 flex flex-col flex-nowrap justify-evenly items-center">
       <fa-icon [ngClass]="{'text-green-500': hasUpvoted(card)}" (click)="onUpvote(card)" [icon]="up"
         class="hover:bg-gray-500 rounded-full py-1 px-2 transition-all duration-200 hover:cursor-pointer"></fa-icon>
-      <div>{{ card.upvoted.length - card.downvotes.length }}</div>
+      <div>{{ card.upvotes.length - card.downvotes.length }}</div>
       <fa-icon [ngClass]="{'text-red-500': hasDownvoted(card)}" (click)="onDownvote(card)" [icon]="down"
         class="hover:bg-gray-500 rounded-full py-1 px-2 transition-all duration-200 hover:cursor-pointer"></fa-icon>
     </div>

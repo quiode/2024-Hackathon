@@ -46,7 +46,7 @@ export class CardsViewComponent {
   }
 
   hasUpvoted(card: Card) {
-    return card.upvoted.some(val => this.user()?.id == val.id);
+    return card.upvotes.some(val => this.user()?.id == val.id);
   }
 
   hasDownvoted(card: Card) {
