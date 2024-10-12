@@ -37,7 +37,7 @@ public class CardController {
      * @param lectId ID of Lecture you want all cards of.
      * @return cardsOfLecture
      */
-    @PostMapping("/card/byLecture/{lectId}")
+    @GetMapping("/byLecture/{lectId}")
     public Collection<Card> getCardsOfLecture(@PathVariable long lectId) {
         return cardService.getCardsOfLecture(lectId);
     }

@@ -37,7 +37,6 @@ export class LectureComponent {
       }
     });
   }
-}
 
   onCardAdd(card: CardAddDto) {
     this.cardService.addCard(card).subscribe(_ => alert('card created'));

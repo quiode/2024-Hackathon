@@ -1,9 +1,7 @@
-import { computed, effect, Injectable, Signal, signal } from '@angular/core';
+import { computed, Injectable, Signal, signal } from '@angular/core';
 import { Lecture } from '../models/Lecture';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, combineLatest, Observable, of, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 import { backendURL } from '../constants';
-import { createWatch } from '@angular/core/primitives/signals';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +11,10 @@ export class LectureService {
 
   constructor(private http: HttpClient) {
     this.fetchLectures();
-   }
+  }
 
   getLecture(id: number): Signal<Lecture | undefined> {
-    return computed(() => this.lectures().find(lecture => lecture.id === id));
+    return computed(() => this.lectures().find(lecture => lecture.id == id));
   }
 
   getLectures(): Signal<Lecture[]> {

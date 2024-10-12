@@ -15,6 +15,10 @@ export class CardService {
 
   constructor(private http: HttpClient) { }
 
+  fetchCardsByLecture(lecture: Lecture) {
+    // TODO
+  }
+
   getCardsByLecture(lecture: Lecture): Signal<Card[]> {
     // update value by values from db
     this.http.get<Card[]>(backendURL() + "/card/byLecture/" + lecture.id)
