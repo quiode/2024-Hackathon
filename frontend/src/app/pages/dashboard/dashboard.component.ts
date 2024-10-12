@@ -17,14 +17,31 @@ import { Lecture } from '../../shared/models/Lecture';
 })
 export class DashboardComponent {
   lectures: Signal<Lecture[]>;
-  // upcoming: Signal<Lecture[]>;
+  upcomingLectures: Signal<Lecture[]>;
+  notUpcomingLectures: Signal<Lecture[]>;
 
   constructor(private lectureService: LectureService) {
     this.lectures = lectureService.getLectures();
-    // this.upcoming = computed(() => this.lectures().filter(lecture => this.isUpcoming(lecture.dates)));
+    this.upcomingLectures = computed(() => this.lectures().filter(lecture => this.isUpcoming(lecture)));
+    this.notUpcomingLectures = computed(() => this.lectures().filter(lecture => !this.isUpcoming(lecture)));
   }
 
   protected readonly faBolt = faBolt;
   protected readonly faGamepad = faGamepad;
+
+  isUpcoming(lecture: Lecture): boolean {
+    const now = new Date();
+    for (let d of lecture.dates) {
+      const start = new Date(d.startDate);
+      const end = new Date(d.endDate);
+      if (
+        start.getFullYear() === now.getFullYear() &&
+        start.getMonth() === now.getMonth() &&
+        start.getDate() === now.getDate() &&
+        start.getTime() <= now.getTime() && now.getTime() < end.getTime()
+      ) return true;
+    }
+    return false;
+  }
 }
 

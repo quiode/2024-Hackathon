@@ -1,5 +1,5 @@
 <div
-  [ngClass]="{'hidden': upcoming() == upcomingSection(), 'bg-fuchsia-600': !upcoming()}"
+  [ngClass]="{'bg-fuchsia-600': upcoming()}"
   class="w-full h-28 rounded-xl p-3 border-2 border-fuchsia-300 flex flex-col cursor-pointer"
   (click)="redirectToLecture()"
 >
@@ -14,10 +14,11 @@
       <div
         class="text-xs"
       >
+        <span>{{ getWeekDay(next()[0]?.getDay()) }}</span>
         {{ ('0' + next()[0]?.getHours()).substr(-2) }}:{{ ('0' + next()[0]?.getMinutes()).substr(-2) }} - {{ ('0' + next()[1]?.getHours()).substr(-2) }}:{{ ('0' + next()[1]?.getMinutes()).substr(-2) }}
       </div>
     </div>
-    @if(!upcoming()) {
+    @if(upcoming()) {
       <div (click)="joinGame()" class="select-none bg-green-500 flex flex-row items-center justify-center gap-2 px-3 rounded-md border-2 border-green-200 cursor-pointer">
         <span>Join Game!</span>
         <fa-icon size="sm" [icon]="faArrowRight"></fa-icon>
