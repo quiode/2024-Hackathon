@@ -1,5 +1,5 @@
 <div class="p-3">
-  <div>Titel</div>
-  <div>8:00-9:00</div>
+  <div class="text-xl font-bold">{{ game()?.lecture?.name }}</div>
+  <div>{{ game()?.timeframe?.startDate }}-{{ game()?.timeframe?.endDate }}</div>
   <app-board [game]="this.game"></app-board>
 </div>

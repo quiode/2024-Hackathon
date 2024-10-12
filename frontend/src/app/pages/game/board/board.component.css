@@ -1,0 +1,13 @@
+.board-border {
+  width: 95%;
+  height: 95%;
+  background: linear-gradient(to right, #a855f7 0%, #4c1d95 50%, #a855f7 100%);
+  background-size: 200%;
+  border-radius: 1rem;
+  animation: move-border 3s linear infinite;
+}
+
+@keyframes move-border {
+  from {background-position: 0}
+  to {background-position: 200%}
+}

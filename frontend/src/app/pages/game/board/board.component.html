@@ -1,3 +1,11 @@
-<div>
-  <app-board-tile></app-board-tile>
+<div class="w-100 py-5 aspect-[.5] flex items-center justify-center relative">
+  <div class="board-border flex items-center justify-center p-2">
+    <div class="board-container h-full aspect-square rounded-lg pt-4 pl-4 z-10 bg-gray-700 overflow-scroll">
+      <div class="pr-4 pb-4 h-full aspect-square grid grid-cols-4 gap-3">
+        @for (tile of board.tiles; track tile) {
+          <app-board-tile class="aspect-square" [status]="0"></app-board-tile>
+        }
+      </div>
+    </div>
+  </div>
 </div>
