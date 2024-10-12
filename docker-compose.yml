@@ -11,6 +11,7 @@ services:
     environment:
       - DB_DOMAIN=db
       - PROD=true
+      - LOG=info
     labels:
       traefik.enable: true
       traefik.http.routers.backend.entrypoints: web
