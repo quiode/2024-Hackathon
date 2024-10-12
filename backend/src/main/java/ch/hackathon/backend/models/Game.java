@@ -1,5 +1,7 @@
 package ch.hackathon.backend.models;
 
+import java.util.Set;
+
 import jakarta.persistence.*;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,5 +34,11 @@ public class Game {
   @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "lecture_timeframe_id", nullable = false)
   private LectureTimeframe lectureTimeframe;
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(name = "game_users",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "game_id"))
+  private Set<User> users;
 
 }

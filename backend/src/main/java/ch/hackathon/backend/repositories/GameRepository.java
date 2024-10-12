@@ -6,6 +6,7 @@ import ch.hackathon.backend.models.LectureTimeframe;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface GameRepository extends JpaRepository<Game, Long> {
@@ -13,6 +14,6 @@ public interface GameRepository extends JpaRepository<Game, Long> {
   /**
    * The timeframe is a database entry which is uniquely mapped to the lecture
    */ 
-  Optional<Game> findByLectureTimeframe(LectureTimeframe timeframe);
+  List<Game> findAllByLectureTimeframe(LectureTimeframe timeframe);
 
 }

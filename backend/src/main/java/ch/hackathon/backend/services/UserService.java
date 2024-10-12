@@ -34,17 +34,18 @@ public class UserService {
       throw new ResponseStatusException(HttpStatus.CONFLICT, "User with that mail already exists");
     }
 
-    User user = new User(null, name, mail, new HashSet<>(), null);
+    User user = new User(null, name, mail, new HashSet<>());
 
     return userRepository.save(user);
   }
 
   public Game joinGame(User user, long gameId) {
-    Optional<Game> game = gameRepository.findById(gameId);
-    if (game.isPresent()) {
-      user.setCurrentGame(game.get());
-      userRepository.save(user);
-      return game.get();
+    Optional<Game> gameOpt = gameRepository.findById(gameId);
+    if (gameOpt.isPresent()) {
+      Game game = gameOpt.get();
+      game.getUsers().add(user);
+      gameRepository.save(game);
+      return game;
     } else {
       throw new IllegalArgumentException("Invalid gameId provided");
     }  

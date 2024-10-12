@@ -38,6 +38,6 @@ public class UserController {
    */
   @GetMapping("/currentGame")
   public Optional<Game> getCurrentGame(@RequestAttribute User user) {
-    return Optional.ofNullable(user.getCurrentGame());
+    return gameService.getCurrentGameForUser(user);
   }
 }

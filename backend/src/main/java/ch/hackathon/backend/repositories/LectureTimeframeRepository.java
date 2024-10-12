@@ -13,5 +13,5 @@ public interface LectureTimeframeRepository extends JpaRepository<LectureTimefra
    * 
    * to find all timeframes that contain a date, just set date1 == date2
    */
-  List<LectureTimeframe> findAllByStartDateAfterAndEndDateBefore(Instant date1, Instant date2);
+  List<LectureTimeframe> findAllByStartDateBeforeAndEndDateAfter(Instant date1, Instant date2);
 }
