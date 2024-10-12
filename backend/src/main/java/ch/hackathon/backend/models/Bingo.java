@@ -1,17 +1,21 @@
 package ch.hackathon.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 /**
  * An actual Bingo card that was generated during a game for a specific user
  *
@@ -23,14 +27,6 @@ public class Bingo {
   @GeneratedValue
   private Long id;
 
-  @ManyToOne(optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "owner_id", nullable = false)
-  private User owner;
-
-  @ManyToOne(optional = false, fetch = FetchType.EAGER)
-  @JoinColumn(name = "game_id", nullable = false)
-  private Game game;
-
   @Column(nullable = false)
   private Integer height;
 
@@ -41,9 +37,9 @@ public class Bingo {
    * The card grid for the Bingo card (In ROW-MAJOR order as heightXwidth matrix)
    */
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "Bingo_cardMatrix",
+  @JoinTable(name = "Bingo_cards",
           joinColumns = @JoinColumn(name = "bingo_id"),
-          inverseJoinColumns = @JoinColumn(name = "cardMatrix_id"))
-  private Set<Card> cardMatrix = new LinkedHashSet<>();
+          inverseJoinColumns = @JoinColumn(name = "cards_id"))
+  private List<Card> cards = new ArrayList<>();
 
 }

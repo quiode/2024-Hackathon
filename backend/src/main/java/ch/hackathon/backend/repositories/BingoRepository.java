@@ -10,6 +10,5 @@ import java.util.List;
 import java.util.Optional;
 
 public interface BingoRepository extends JpaRepository<Bingo, Long> {
-  List<Bingo> findAllByGame(Game game);
-  Optional<Bingo> findByGameAndOwner(Game game, User owner);
+
 }
