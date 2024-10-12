@@ -1,6 +1,5 @@
 package ch.hackathon.backend.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,13 +29,11 @@ public class User {
    * The lectures this student attends
    */
   @ManyToMany
-  @JsonIgnore // TODO
   private Set<Lecture> lectures;
 
   /**
    *
    */
   @ManyToOne
-  @JsonIgnore // TODO
   private Game currentGame;
 }
