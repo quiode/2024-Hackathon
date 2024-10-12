@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { LectureCardComponent } from '../lecture-card/lecture-card.component';
+import { LectureCardComponent } from '../lecture/lecture-card/lecture-card.component';
 
 @Component({
   selector: 'app-dashbord',

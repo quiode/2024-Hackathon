@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {Game} from "../game";
+import { Game } from '../../../game';
 
 @Component({
   selector: 'app-lecture-card',

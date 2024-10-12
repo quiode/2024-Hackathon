@@ -1,8 +1,6 @@
 import { Component, computed, OnInit, signal } from '@angular/core';
-import { LectureService } from '../shared/services/lecture.service';
-import { Lecture } from '../shared/models/Lecture';
-import { Observable } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
+import { LectureService } from '../../shared/services/lecture.service';
 
 @Component({
   selector: 'app-lecture',
