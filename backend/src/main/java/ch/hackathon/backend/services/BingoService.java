@@ -25,7 +25,7 @@ public class BingoService {
         cards = cards.subList(0, width*height);
 
         //Create Bingo
-        Bingo bingo = new Bingo(null, width, height, cards);
+        Bingo bingo = new Bingo(null, width, height, cards, new ArrayList<>(), new ArrayList<>());
 
         return bingoRepository.save(bingo);
     }

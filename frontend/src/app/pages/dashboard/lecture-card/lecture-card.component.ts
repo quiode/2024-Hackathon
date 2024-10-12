@@ -1,7 +1,5 @@
 import { Component, computed, Input, input, signal, Signal } from '@angular/core';
-import { Game } from '../../../shared/models/Game';
 import { Lecture } from '../../../shared/models/Lecture';
-import { LectureTimeframe } from '../../../shared/models/LectureTimeframe';
 import { CommonModule } from '@angular/common';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,16 +14,14 @@ import { Router } from '@angular/router';
 
 export class LectureCardComponent {
   lecture = input.required<Lecture>();
-  upcomingSection = input.required<boolean>();
+  upcoming = input.required<boolean>();
   start = "";
   end = "";
-  upcoming: Signal<boolean>;
   next: Signal<Date[] | null[]>;
 
   constructor(private router: Router) {
     this.router = router;
     this.next = computed(() => this.getNext(this.lecture()));
-    this.upcoming = computed(() => this.isUpcoming(this.lecture()));
   }
 
   getNext(lecture: Lecture): Date[] | null[] {
@@ -38,25 +34,17 @@ export class LectureCardComponent {
     return [null, null];
   }
 
-  isUpcoming(lecture: Lecture): boolean {
-    const today = new Date();
-    for (let d of lecture.dates) {
-      const start = new Date(d.startDate);
-      if (
-        start.getFullYear() === today.getFullYear() &&
-        start.getMonth() === today.getMonth() &&
-        start.getDate() === today.getDate()
-      ) return true;
-    }
-    return true;
-  }
-
   redirectToLecture() {
     this.router.navigate(["lecture", this.lecture().id])
   }
 
   joinGame() {
     // TODO
+  }
+
+  getWeekDay(day: number | undefined) {
+    if (day == undefined) return '';
+    return ['Sun.', 'Mon.', 'Tue.', 'Wed.', 'Thu.', 'Fri.', 'Sat.'][day];
   }
 
   protected readonly faArrowRight = faArrowRight;

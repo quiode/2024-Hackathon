@@ -1,44 +1,52 @@
 <div class="w-100 flex flex-row flex-wrap justify-evenly border-solid border-2 border-gray-500 rounded-md">
   <div class="basis-full rounded flex flex-row flex-nowrap justify-center m-1 p-1">
-    <button (click)="onCardAddClick()"
-      class="w-80 h-10 px-5 border-2 border-solid rounded dark:bg-fuchsia-950 bg-fuchsia-700 text-white dark:hover:bg-fuchsia-800 transition-all hover:bg-fuchsia-500">Add Bingo
+    <button (click)="toggleCardForm()"
+      class="w-80 h-10 px-5 border-2 border-solid rounded dark:bg-fuchsia-950 bg-fuchsia-700 text-white dark:hover:bg-fuchsia-800 transition-all hover:bg-fuchsia-500">Add
+      Bingo
       Card</button>
   </div>
-  
+
   @if (wantToEdit()){
-    <div @formTrigger id="form-section" class="mb-2 bg-fuchsia-200 dark:bg-fuchsia-950 p-8 rounded shadow-lg w-full max-w-md">
-      <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">New Bingo Card</h2>
-      <form id="contact-form">
-        <!--
+  <div @formTrigger id="form-section"
+    class="mb-2 bg-fuchsia-200 dark:bg-fuchsia-950 p-8 rounded shadow-lg w-full max-w-md">
+    <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-200">New Bingo Card</h2>
+    <form id="contact-form" [formGroup]="cardFrom">
+      <!--
         <div class="mb-4">
           <label class="block dark:text-gray-200 text-gray-700 text-sm font-bold mb-2" for="title"></label>
           <input id="title" type="text" class="w-full p-2 dark:text-gray-200 border dark:bg-gray-500 dark:border-gray-900 border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
         </div>
       -->
-        <div class="mb-4">
-          <label class="block dark:text-gray-200 text-gray-700  text-sm font-bold mb-2" for="professor">Professor</label>
-          <select id="professor" class="w-full dark:text-gray-200 dark:bg-gray-500 dark:border-gray-900 p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
-            <option value="" disabled selected>Select a professor</option>
-            @for(prof of professors(); track prof.id){
-              <option [value]="prof"> {{prof.name}} </option>
-            }
-          </select>
-        </div>
-        <div class="mb-6">
-          <label class="block dark:text-gray-200 text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
-          <textarea maxlength="100" id="message" class="dark:text-gray-200 dark:bg-gray-500 dark:border-gray-900 w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"></textarea>
-        </div>
-        <div class="flex items-center justify-between">
-          <button (click)="onSubmitCard()" id="submit-btn" type="submit" class="bg-fuchsia-700 dark:hover:bg-fuchsia-800 hover:bg-fuchsia-500 transition-all text-white font-bold py-2 px-4 rounded focus:outline-none">
-            Submit Card
-          </button>
-        </div>
-      </form>
-    </div>
+      <div class="mb-4">
+        <label class="block dark:text-gray-200 text-gray-700  text-sm font-bold mb-2" for="professor">Professor</label>
+        <select formControlName="professor" id="professor"
+          [ngClass]="{'border-red-600 border-2': cardFrom.controls.professor.invalid, 'border-gray-300 dark:border-gray-900': cardFrom.controls.professor.valid}"
+          class="w-full dark:text-gray-200 dark:bg-gray-500 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+          <option [ngValue]="null" disabled selected>Select a professor</option>
+          @for(prof of professors(); track prof.id){
+          <option [ngValue]="prof"> {{prof.name}} </option>
+          }
+        </select>
+      </div>
+      <div class="mb-6">
+        <label class="block dark:text-gray-200 text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
+        <textarea formControlName="text" maxlength="100" id="message"
+          [ngClass]="{'border-red-600 border-2': cardFrom.controls.text.invalid, 'border-gray-300 dark:border-gray-900': cardFrom.controls.text.valid}"
+          class="dark:text-gray-200 dark:bg-gray-500 w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"></textarea>
+      </div>
+      <div class="flex items-center justify-between">
+        <button [disabled]="cardFrom.invalid" (click)="onSubmitCard()" id="submit-btn" type="submit"
+          [ngClass]="{'dark:hover:bg-fuchsia-800 hover:bg-fuchsia-500 focus:outline-none': cardFrom.valid}"
+          class="bg-fuchsia-700 transition-all text-white font-bold py-2 px-4 rounded">
+          Submit Card
+        </button>
+      </div>
+    </form>
+  </div>
   }
-  
+
   @if (hasCards()) {
-    <hr class="basis-full border-fuchsia-500 dark:border-fuchsia-800 m-4">
+  <hr class="basis-full border-fuchsia-500 dark:border-fuchsia-800 m-4">
 
   @for (profMap of professorCardMap(); track profMap[0].id) {
   @if (profMap[1].length > 0) {
