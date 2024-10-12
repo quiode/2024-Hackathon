@@ -26,7 +26,7 @@ public class GameService {
 
 
     public Game createGame(Lecture lecture, Professor professor, LectureTimeframe timeframe) {
-        Game game = new Game(null, lecture, professor, timeframe, new HashSet<>());
+        Game game = new Game(null, lecture, professor, timeframe, new HashSet<>(), new HashSet<>(), -1, -1);
         return gameRepository.save(game);
     }
 

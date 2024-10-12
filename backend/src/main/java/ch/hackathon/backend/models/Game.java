@@ -1,5 +1,6 @@
 package ch.hackathon.backend.models;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import jakarta.persistence.*;
@@ -40,5 +41,17 @@ public class Game {
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "game_id"))
   private Set<User> users;
+
+  @ManyToMany
+  @JoinTable(name = "Game_cardPool",
+          joinColumns = @JoinColumn(name = "game_id"),
+          inverseJoinColumns = @JoinColumn(name = "cardPool_id"))
+  private Set<Card> cardPool = new LinkedHashSet<>();
+
+  @Column(name = "bingoWidth", nullable = false)
+  private Integer bingoWidth;
+
+  @Column(name = "bingoHeight", nullable = false)
+  private Integer bingoHeight;
 
 }
