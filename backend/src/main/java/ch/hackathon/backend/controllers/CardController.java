@@ -2,8 +2,6 @@ package ch.hackathon.backend.controllers;
 
 import ch.hackathon.backend.dtos.CreateCardDTO;
 import ch.hackathon.backend.models.Card;
-import ch.hackathon.backend.models.Lecture;
-import ch.hackathon.backend.models.Professor;
 import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.services.CardService;
 import lombok.RequiredArgsConstructor;
@@ -19,7 +17,6 @@ public class CardController {
     public Card createCard(@RequestAttribute User creator,
                            @RequestBody CreateCardDTO ccdto) {
         //Get and pass on all necessary data to create a new card.
-        //return cardService.createCard(creator, ccdto.getText(), ccdto.getLecture(), ccdto.getProfessor());
-        return null;
+        return cardService.createCard(creator, ccdto.getText(), ccdto.getLecture(), ccdto.getProfessor());
     }
 }
