@@ -38,6 +38,7 @@ export class CardsViewComponent {
     const cards = this.cards();
     return new Map(this.professors().map(prof => { return [prof, cards.filter(card => card.professor.id == prof.id).sort((a, b) => new Date(a.creationDate).getTime() - new Date(b.creationDate).getTime())] }));
   });
+  hasCards: Signal<boolean> = computed(() => [...this.professorCardMap().values()].some(arr => arr.length > 0));
 
   onCardAdd() {
     this.professorCardMap().size
