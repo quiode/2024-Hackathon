@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collection;
-import java.util.Set;
 
 @RestController
 @RequestMapping("/card")
@@ -35,7 +34,7 @@ public class CardController {
 
     /**
      * Returns a collection of all cards of a lecture.
-     * @param lectId
+     * @param lectId ID of Lecture you want all cards of.
      * @return cardsOfLecture
      */
     @PostMapping("/card/byLecture/{lectId}")
