@@ -1,7 +1,10 @@
 package ch.hackathon.backend.repositories;
 
 import ch.hackathon.backend.models.Card;
-import org.springframework.data.repository.CrudRepository;
 
-public interface CardRepository extends CrudRepository<Card, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CardRepository extends JpaRepository<Card, Long> {
+
+
 }

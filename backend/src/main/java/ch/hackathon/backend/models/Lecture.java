@@ -34,9 +34,11 @@ public class Lecture {
   /**
    * we create a separate LectureTimeframe model to make handling
    * the time frames easier (we don't want deeply nested collections)
+   * 
+   * Note that the timeframe should uniquely belong to a specific lecture
+   *
    */
-
-  @ManyToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL)
   private Set<LectureTimeframe> dates;
 
 }
