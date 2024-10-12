@@ -9,13 +9,13 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
   let reqWithHeader = req;
   if (isDevMode()) {
     reqWithHeader = reqWithHeader.clone({
-      headers: req.headers.set('X-authentik-username', 'dschwaiger'),
+      headers: reqWithHeader.headers.set('X-authentik-username', 'dschwaiger'),
     });
     reqWithHeader = reqWithHeader.clone({
-      headers: req.headers.set('X-authentik-name', 'Dominik Schwaiger'),
+      headers: reqWithHeader.headers.set('X-authentik-name', 'Dominik Schwaiger'),
     });
     reqWithHeader = reqWithHeader.clone({
-      headers: req.headers.set('X-authentik-email', 'dschwaiger@ethz.ch'),
+      headers: reqWithHeader.headers.set('X-authentik-email', 'dschwaiger@ethz.ch'),
     });
   }
 
