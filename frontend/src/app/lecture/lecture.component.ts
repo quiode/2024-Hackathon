@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
-import { Lecture } from '../interfaces/lecture';
+import { Component, computed, OnInit, signal } from '@angular/core';
+import { LectureService } from '../shared/services/lecture.service';
+import { Lecture } from '../shared/models/Lecture';
+import { Observable } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'app-lecture',
@@ -9,22 +12,12 @@ import { Lecture } from '../interfaces/lecture';
   styleUrl: './lecture.component.css'
 })
 export class LectureComponent {
+  lecture;
+  // lectureData;
   
-  lecture: Lecture = {
-    title: null,
-    lecturers: null,
-    times: null,
-    cards: null
-  }
-
-  getLiveGame() {
-    return false;
-  }
-  getLecturers() {
-    return this.lecture.lecturers;
-  }
-  getTitle() {
-    return this.lecture.title;
-  }
+  constructor(private lectureService: LectureService) {
+    this.lecture = toSignal(this.lectureService.getLecture());
+    // this.lectureData = computed(() => this.lecture()?.lecturers);
+    }
 
 }
