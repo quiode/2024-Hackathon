@@ -25,7 +25,8 @@ public class LectureService {
   private final LectureRepository lectureRepository;
   private final ProfessorRepository professorRepository;
   private final LectureTimeframeRepository lectureTimeframeRepository;
-  /**
+
+   /**
    * Creates a with specified values and returns it
    */
   public Lecture createLecture(String name, Set<String> professorNames, Set<Pair<Instant, Instant>> dates) {

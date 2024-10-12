@@ -3,16 +3,21 @@ package ch.hackathon.backend.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import ch.hackathon.backend.dtos.CreateLectureDTO;
+import ch.hackathon.backend.models.Lecture;
+import ch.hackathon.backend.models.User;
+import ch.hackathon.backend.services.LectureService;
+
 @RestController
-@RequestMapping("/card")
+@RequestMapping("/lecture")
 @RequiredArgsConstructor
 public class LectureController {
-    // private final CardService cardService;
+    private final LectureService lectureService;
 
-    /* @PostMapping("/create")
-    public Card createLecture(@RequestAttribute User creator,
-                               @RequestBody CreateCardDTO ccdto) {
-        //Get and pass on all necessary data to create a new card.
-        return cardService.createCard(creator, ccdto.getText(), ccdto.getLecture(), ccdto.getProfessor());
-    } */
+    @PostMapping("/create")
+    public Lecture createLecture(@RequestAttribute User creator,
+                                 @RequestBody CreateLectureDTO lecture) {
+        Lecture createdLecture = lectureService.createLecture(lecture.getName(), lecture.getProfessors(), lecture.getDates());
+        return createdLecture;
+    }
 }
