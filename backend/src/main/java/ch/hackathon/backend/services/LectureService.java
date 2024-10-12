@@ -63,4 +63,16 @@ public class LectureService {
     lectureWithId.setDates(datesTimeframe);
     return lectureRepository.save(lectureWithId);    // return null;
   }
+
+  public Optional<Lecture> getById(Long id) { return lectureRepository.findById(id); }
+  public Optional<LectureTimeframe> getTimeframeForLecture(Lecture lecture, Instant date) {
+    return lectureTimeframeRepository.findAllByStartDateBeforeAndEndDateAfter(date, date)
+      .stream()
+      .filter(tf -> {
+          Optional<Lecture> lectureOpt = lectureRepository.findByDates(tf);
+          return lectureOpt.isPresent() && lectureOpt.get().getId().equals(lecture.getId());
+        }
+      ).findAny();
+      
+  }
 }
