@@ -21,7 +21,15 @@ export class LectureComponent {
     id: 1,
     creationDate: Date.now(),
     creator: {
-      currentGame: {},
+      currentGame: {
+        id: 1,
+        lectureId: 1,
+        lecturer: 1,
+        timeframe: {
+          end: 1,
+          start: 1
+        }
+      },
       id: 1,
       lectures: [],
       mail: "domi",
