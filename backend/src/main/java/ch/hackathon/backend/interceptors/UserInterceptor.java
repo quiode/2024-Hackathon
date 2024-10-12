@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 import org.springframework.web.server.ResponseStatusException;
@@ -23,9 +24,14 @@ public class UserInterceptor implements HandlerInterceptor {
 
   @Override
   public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    // allow all option requests
+    if (request.getMethod().equals(HttpMethod.OPTIONS.name())) return true;
+
     String username = request.getHeader("X-authentik-username");
     String mail = request.getHeader("X-authentik-email");
     String name = request.getHeader("X-authentik-name");
+
+    log.info("Incoming Request!");
 
     if (username == null || mail == null || name == null) {
       // headers not set, throw error
