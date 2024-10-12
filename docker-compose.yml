@@ -10,6 +10,7 @@ services:
       - 8080
     environment:
       - DB_DOMAIN=db
+      - PROD=true
     labels:
       traefik.enable: true
       traefik.http.routers.backend.entrypoints: web
