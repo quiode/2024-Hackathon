@@ -27,9 +27,9 @@ public class LectureController {
         return createdLecture;
     }
 
-    @GetMapping("/")
-    public Lecture getLecture(@RequestBody Long id) {
-        Optional<Lecture> lecture = lectureService.getLectureById(id);
+    @GetMapping("/{lectId}")
+    public Lecture getLecture(@PathVariable Long lectId) {
+        Optional<Lecture> lecture = lectureService.getLectureById(lectId);
         if (lecture.isPresent()) {
             return lecture.get();
         } else {

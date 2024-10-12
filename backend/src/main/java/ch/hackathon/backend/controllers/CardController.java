@@ -26,8 +26,8 @@ public class CardController {
     /*
      * Saves that the given user has now upvoted the given card.
      */
-    @PostMapping("/upvote")
-    public void upvote(@RequestAttribute User user, @RequestBody Long cardId){
+    @PostMapping("/upvote/{cardId}")
+    public void upvote(@RequestAttribute User user, @PathVariable Long cardId){
         try {
             cardService.vote(user, cardId, Vote.UP);
         }
@@ -40,8 +40,8 @@ public class CardController {
     /*
      * Saves that the given user has now downvoted the given card.
      */
-    @PostMapping("/downvote")
-    public void downvote(@RequestAttribute User user, @RequestBody Long cardId){
+    @PostMapping("/downvote/{cardId}")
+    public void downvote(@RequestAttribute User user, @PathVariable Long cardId){
         try {
             cardService.vote(user, cardId, Vote.DOWN);
         }
