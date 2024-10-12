@@ -12,5 +12,5 @@ public interface LectureRepository extends JpaRepository<Lecture, Long> {
   // List<Lecture> findAllByProfessors(Professor professor);
   Optional<Lecture> findByName(String name);
   Optional<Lecture> findByDates(LectureTimeframe timeframe);
-  Optional<Lecture> findByDatesIn(Collection<LectureTimeframe> timeframes)
+  Optional<Lecture> findByDatesIn(Collection<LectureTimeframe> timeframes);
 }
