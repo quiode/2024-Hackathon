@@ -6,7 +6,6 @@ import { Game } from '../../../shared/models/Game';
   standalone: true,
   imports: [],
   templateUrl: './lecture-card.component.html',
-  styleUrl: './lecture-card.component.css'
 })
 export class LectureCardComponent {
 
