@@ -1,6 +1,6 @@
 import { Component, computed, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { LectureCardComponent } from './lecture-card/lecture-card.component';
+import { LectureCardComponent } from '../lecture/lecture-card/lecture-card.component';
 import { FaIconComponent } from "@fortawesome/angular-fontawesome";
 import { faBolt, faGamepad } from "@fortawesome/free-solid-svg-icons";
 import { LectureService } from '../../shared/services/lecture.service';
