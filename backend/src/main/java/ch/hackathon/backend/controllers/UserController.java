@@ -3,10 +3,7 @@ package ch.hackathon.backend.controllers;
 import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestHeader;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/user")
@@ -18,5 +15,13 @@ public class UserController {
   public User registerUser(@RequestHeader("X-authentik-email") String mail,
       @RequestHeader("X-authentik-name") String name) {
     return userService.createUser(name, mail);
+  }
+
+  /**
+   * Returns the current user
+   */
+  @GetMapping("")
+  public User getCurrentUser(@RequestAttribute User user) {
+    return user;
   }
 }
