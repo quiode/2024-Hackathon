@@ -1,8 +1,9 @@
 export interface Game {
-  id: number;
-  professor : string;
+  timeFrame : string;
   startDate : Date;
-  endDate : Date;
-  subjectTitle : String;
-  isUpcoming : Boolean;
+  endDate: Date;
+  id: number;
+  professors : string;
+  subjectTitle : string;
+  isUpcoming : boolean
 }

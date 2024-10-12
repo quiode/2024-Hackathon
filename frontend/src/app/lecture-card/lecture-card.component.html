@@ -1,6 +1,15 @@
-<div class="custom-card p-2 py-1.5" >
-  <h2 class="listing-heading">{{ lectureGame.subjectTitle }}</h2>
-  <p  >{{ lectureGame.professor }}</p>
-  <p>{{ lectureGame.startDate }}</p> <!-- in the ngIf block: check if the lecture is upcoming in the corresponding .ts class and display conditionally -->
+<div class="custom-card p-1 py-1.5 ">
+  <h2 class="listing-heading">
+    {{ currentLectureGame.subjectTitle }}
+  </h2>
+  <div class="space-y-1.5 flex flex-row justify-items-between">
+  <div>
+    <p> {{ currentLectureGame.professors }} </p>
+    <p> {{currentLectureGame.startDate }}  </p>
+  </div>
+  <div>
+    <button @if(currentLecture.isUpcoming) class="enter-game-button p-1"> Enter Game!</button>
+  </div>
+    </div>
   <!-- TODO: 'Enter Game' button -->
 </div>

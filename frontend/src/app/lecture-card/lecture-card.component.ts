@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Game} from "../game";
 
 @Component({
   selector: 'app-lecture-card',
@@ -8,16 +9,25 @@ import { Component } from '@angular/core';
   styleUrl: './lecture-card.component.css'
 })
 export class LectureCardComponent {
-  today : Date = new Date();
 
-  lectureGame  = {
-    endDate: new Date(2024, 11, 1, 16, 0),
+// TODO: actually get data from backend
+   currentLectureGame: Game = {
+    timeFrame : "",
+    endDate: new Date(2024, 11, 1, 16, 0), // imterpolate from timeframe
     id: 11,
-    professor: "Ueli Maurer",
-    startDate: new Date(2024, 11, 1, 14, 15),
+    professors: "Ueli Maurer",
+    startDate: new Date(2024, 11, 1, 14, 15), // imterpolate from timeframe
     subjectTitle: "Diskrete Mathematik",
-    isUpcoming: true /* this.today.getFullYear() === new Date(2024, 11, 1, 16, 0).getFullYear() && //blueprint for upcoming lecture display logic
-      this.today.getMonth() === new Date(2024, 11, 1, 16, 0).getMonth() && // new date (...) is supposed to be replaced by data from the backend
-      this.today.getDate() === new Date(2024, 11, 1, 16, 0).getDate() */
+    isUpcoming : isUpcoming(new Date()) // (supposed to be same as startDate)
   }
+  protected readonly isUpcoming = isUpcoming;
+}
+
+function isUpcoming(date: Date) : boolean {
+  const today : Date = new Date();
+
+  const output = today.getFullYear() === date.getFullYear() &&
+    today.getMonth() === date.getMonth() &&
+    today.getDate() === date.getDate();
+  return true; //return output
 }
