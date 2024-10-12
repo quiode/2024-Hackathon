@@ -14,7 +14,7 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Service
 public class BingoService {
-    private BingoRepository bingoRepository;
+    private final BingoRepository bingoRepository;
 
     public Bingo createBingo(int width, int height, Set<Card> cardPool) {
 

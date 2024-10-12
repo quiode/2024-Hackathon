@@ -7,9 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Getter
@@ -18,7 +16,6 @@ import java.util.Set;
 @AllArgsConstructor
 /**
  * An actual Bingo card that was generated during a game for a specific user
- *
  * The actual card grid is stored as row major matrix (see width and height
  * attributes)
  */
@@ -28,10 +25,12 @@ public class Bingo {
   private Long id;
 
   @Column(nullable = false)
-  private Integer height;
+  private Integer width;
 
   @Column(nullable = false)
-  private Integer width;
+  private Integer height;
+
+
 
   /**
    * The card grid for the Bingo card (In ROW-MAJOR order as heightXwidth matrix)
