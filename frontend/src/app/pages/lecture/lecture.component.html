@@ -2,8 +2,8 @@
   @if (lecture(); as lecture) {
   <div class="title">{{ lecture.name }}</div>
   <div class="lecturers">
-    @for (lecturer of lecture.professors; track $index; let last = $last) {
-    <a href="" class="lecturer">{{ lecturer }}</a>@if (!last) {<span>, </span>}
+    @for (lecturer of lecture.professors; track lecturer.id; let last = $last) {
+    <a href="" class="lecturer">{{ lecturer.name }}</a>@if (!last) {<span>, </span>}
     }
   </div>
   <div class="live-game">
