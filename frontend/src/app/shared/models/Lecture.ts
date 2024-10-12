@@ -1,9 +1,10 @@
+import { Professor } from "./Professor"
 import { Timeframe } from "./Timeframe"
 
 export interface Lecture {
   id: number,
   title: string,
-  lecturers: number[],
+  lecturers: Professor[],
   dates: Timeframe[],
   cards: number[]
 }
