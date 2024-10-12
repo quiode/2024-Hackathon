@@ -80,6 +80,48 @@ public class Initializer {
                 log.info("Did not repopulate database with fake lecture, as it already exists.");
             }
 
+            Lecture anw = null;
+            try {
+                anw = lectureService.createLecture(
+                        "Schroedingers Algorithmen",
+                        new HashSet<>(Arrays.asList("Angelika Steger")),
+                        new HashSet<>(Arrays.asList(Pair.with(Instant.now().plus(15, ChronoUnit.HOURS),
+                                Instant.now().plus(17, ChronoUnit.HOURS))))
+                );
+                user.getLectures().add(anw);
+                user = userRepository.save(user);
+            } catch (IllegalArgumentException e) {
+                log.info("Did not repopulate database with fake lecture, as it already exists.");
+            }
+
+            Lecture linAlg = null;
+            try {
+                linAlg = lectureService.createLecture(
+                        "Skinny Tall vs. Short Wide",
+                        new HashSet<>(Arrays.asList("Afonsa Bandeira")),
+                        new HashSet<>(Arrays.asList(Pair.with(Instant.now().plus(15, ChronoUnit.HOURS),
+                                Instant.now().plus(17, ChronoUnit.HOURS))))
+                );
+                user.getLectures().add(linAlg);
+                user = userRepository.save(user);
+            } catch (IllegalArgumentException e) {
+                log.info("Did not repopulate database with fake lecture, as it already exists.");
+            }
+
+            Lecture eProg = null;
+            try {
+                eProg = lectureService.createLecture(
+                        "How To Get Sellerie",
+                        new HashSet<>(Arrays.asList("Thomas Gross")),
+                        new HashSet<>(Arrays.asList(Pair.with(Instant.now().plus(15, ChronoUnit.HOURS),
+                                Instant.now().plus(17, ChronoUnit.HOURS))))
+                );
+                user.getLectures().add(eProg);
+                user = userRepository.save(user);
+            } catch (IllegalArgumentException e) {
+                log.info("Did not repopulate database with fake lecture, as it already exists.");
+            }
+
             if (and != null) {
                 try {
                     gameService.createGame(and, and.getProfessors().stream().findFirst().get(),
