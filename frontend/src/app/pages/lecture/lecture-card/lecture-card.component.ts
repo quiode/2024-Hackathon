@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Game } from '../../../shared/models/Game';
+import {Lecture} from "../../../shared/models/Lecture";
 
 @Component({
   selector: 'app-lecture-card',
@@ -7,7 +8,16 @@ import { Game } from '../../../shared/models/Game';
   imports: [],
   templateUrl: './lecture-card.component.html',
 })
+
 export class LectureCardComponent {
+  upcoming: boolean = false
+  @Input()
+  getUpcoming(): boolean {
+    return this.upcoming;
+  }
+  setUpcoming(isUpcoming: boolean) {
+    this.upcoming = isUpcoming;
+  }
 
   // TODO: actually get data from backend
   currentLectureGame: Game = {
@@ -31,11 +41,14 @@ export class LectureCardComponent {
   protected readonly isUpcoming = isUpcoming;
 }
 
-function isUpcoming(date: Date): boolean {
+export function isUpcoming(date: Date): boolean {
   const today: Date = new Date();
 
   const output = today.getFullYear() === date.getFullYear() &&
     today.getMonth() === date.getMonth() &&
     today.getDate() === date.getDate();
-  return true; //return output //TODO
+
+  return output;
 }
+
+
