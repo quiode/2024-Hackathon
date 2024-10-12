@@ -1,5 +1,5 @@
 export interface LectureTimeframe {
   id: number;
-  startDate: number;
-  endDate: number;
+  startDate: string;
+  endDate: string;
 }

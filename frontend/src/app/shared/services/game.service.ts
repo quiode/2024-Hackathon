@@ -17,7 +17,7 @@ export class GameService {
 
     return of({
       id: 1,
-      timeframe: {startDate: 1000, endDate: 2000, id: 1},
+      timeframe: {startDate: '', endDate: '', id: 1},
       lecture: {
         dates: [],
         id: 1,

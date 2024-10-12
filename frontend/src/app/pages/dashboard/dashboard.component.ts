@@ -28,7 +28,7 @@ export class DashboardComponent {
   isUpcoming(dates: LectureTimeframe[]) {
     const today = new Date();
     for (let d of dates) {
-      const start = new Date(Date.UTC(d.startDate));
+      const start = new Date(d.startDate);
       if (
         start.getFullYear() === today.getFullYear() &&
         start.getMonth() === today.getMonth() &&

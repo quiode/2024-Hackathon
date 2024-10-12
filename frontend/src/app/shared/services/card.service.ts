@@ -45,6 +45,14 @@ export class CardService {
       tap(_ => this.fetchCardsByLecture(dto.lecture)) // update locale stored cards
     );
   }
+
+  downvote(card: Card): Observable<void> {
+    return this.http.post<void>(backendURL() + "/card/downvote/" + card.id, {});
+  }
+
+  upvote(card: Card): Observable<void> {
+    return this.http.post<void>(backendURL() + "/card/upvote/" + card.id, {});
+  }
 }
 
 export interface CardAddDto {

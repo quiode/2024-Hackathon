@@ -19,7 +19,7 @@ export class BoardTileComponent {
     this.tile = {
       id: 1,
       text: "test",
-      creationDate: 1,
+      creationDate: '',
       creator: {
         id: 1,
         name: "test",

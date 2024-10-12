@@ -26,9 +26,9 @@ export class LectureCardComponent {
       name: ''
     },
     timeframe: {
-      endDate: 1,
+      endDate: '',
       id: 1,
-      startDate: 1
+      startDate: ''
     }
   }
   protected readonly isUpcoming = isUpcoming;
