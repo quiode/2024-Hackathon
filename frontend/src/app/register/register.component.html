@@ -1,4 +1,7 @@
-<h1>Welcome to Bingo</h1>
-<h2>You do not have an account!</h2>
-<h3>Click this button to create one!</h3>
-<button (click)="onCreateAccount()">Create Account</button>
+<div class="w-full h-full flex justify-center items-center">
+  <div class="text-center w-full lg:w-3/4 xl:w-4/5">
+    <h1 class="text-3xl mb-5">Welcome to Bingo</h1>
+    <h2 class="text-xl mb-5">You do <span class="text-red-600">not</span> have an account!</h2>
+    <h3>Click <button (click)="onCreateAccount()" class="rounded-full bg-fuchsia-800 p-2 hover:bg-fuchsia-600 transition-all text-white ">this button</button> to instantly create one!</h3>
+  </div>
+</div>

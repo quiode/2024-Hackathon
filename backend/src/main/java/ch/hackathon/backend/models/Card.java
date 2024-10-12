@@ -1,6 +1,7 @@
 package ch.hackathon.backend.models;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 /*
  * A Bingo `Card`, i.e. an entry in the Bingo (that was created as reference to
  * a lecture / prof)
