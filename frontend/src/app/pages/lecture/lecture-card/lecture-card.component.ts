@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Game } from '../../../shared/models/Game';
 import {Lecture} from "../../../shared/models/Lecture";
 
@@ -11,8 +11,14 @@ import {Lecture} from "../../../shared/models/Lecture";
 })
 
 export class LectureCardComponent {
-
-
+  upcoming: boolean = false
+  @Input()
+  getUpcoming(): boolean {
+    return this.upcoming;
+  }
+  setUpcoming(isUpcoming: boolean) {
+    this.upcoming = isUpcoming;
+  }
 
   // TODO: actually get data from backend
   currentLectureGame: Game = {
