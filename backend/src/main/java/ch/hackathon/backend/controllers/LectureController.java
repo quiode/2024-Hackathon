@@ -1,18 +1,16 @@
 package ch.hackathon.backend.controllers;
 
-import lombok.RequiredArgsConstructor;
-
-import java.util.Optional;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 import ch.hackathon.backend.dtos.CreateLectureDTO;
 import ch.hackathon.backend.models.Lecture;
 import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.services.LectureService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
+
+import java.util.Collection;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/lecture")
@@ -35,5 +33,10 @@ public class LectureController {
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping("")
+    public Collection<Lecture> getLectures(@RequestAttribute User user) {
+        return user.getLectures();
     }
 }
