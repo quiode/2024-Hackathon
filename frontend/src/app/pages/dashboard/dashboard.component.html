@@ -1,30 +1,50 @@
-<article class="content-stretch border-4">
-  <p class="h-10 text-4xl m-2"> Upcoming Games!</p>
-  <div class=" max-h-20 overflow-scroll overscroll-auto py-1 flex-wrap  justify-items-stretch">
-    <!--
-    <div class="mb-2"> <app-lecture-card></app-lecture-card> </div>
-    <div class="mt-2 mb-2"> <app-lecture-card></app-lecture-card> </div>
-    <div class="mt-2 mb-2"> <app-lecture-card></app-lecture-card> </div>
-    <div class="mt-2 mb-2"> <app-lecture-card></app-lecture-card> </div>
-  -->
-  </div>
-</article>
-
-<article class="content-center border-4 ">
-  <p class="h-10 text-4xl my-2"> My Stat Highlights</p>
-  <div class="flex flex-row justify-items-between">
-
-    <div class="p-3.5">
-      <fa-icon class="hover:cursor-pointer hover:text-fuchsia-400 ease-linear transition-all" size="4x" [icon]="faBolt">
-      </fa-icon>
+<div class="p-3">
+  <article class="pb-10">
+    <p class="h-10 text-2xl border-b-2 mb-3">Upcoming Games</p>
+    <div class="relative py-1 flex flex-col gap-3">
+      @for (lecture of lectures(); track lecture.id) {
+        <app-lecture-card [lecture]="lecture" [upcomingSection]="true"></app-lecture-card>
+      }
+      <div class="absolute top-0 left-3.5 -z-10">No upcoming lectures...</div>
     </div>
-    <div class="text-3xl p-2">
-      1939 points!
-    </div>
-  </div>
-</article>
+  </article>
 
-<article class="content-center border-4 ">
+  <article class="pb-10">
+    <p class="h-10 text-2xl border-b-2 mb-0">My Stats</p>
+    <div class="flex flex-col p-3.5 gap-2">
+      <div class="flex flex-row items-center">
+        <div class="w-16">
+          <fa-icon size="2xl" [icon]="faGamepad"></fa-icon>
+        </div>
+        <div class="text-lg p-2">
+          4 games played
+        </div>
+      </div>
+      <div class="flex flex-row items-center">
+        <div class="w-16">
+          <fa-icon size="2xl" [icon]="faBolt">
+          </fa-icon>
+        </div>
+        <div class="text-lg p-2">
+          2024 points
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article class="pb-10">
+    <p class="h-10 text-2xl border-b-2 mb-3">My Lectures</p>
+    <div class="py-1 flex flex-col gap-3">
+      @for (lecture of lectures(); track lecture.id) {
+        <app-lecture-card [lecture]="lecture" [upcomingSection]="false"></app-lecture-card>
+      }
+    </div>
+  </article>
+</div>
+
+
+
+<!-- <article class="content-center border-4 ">
   <p class="h-10 text-4xl m-2"> My Lectures</p>
   <div class=" h-50 overflow-scroll overscroll-auto py-4 flex-wrap grid grid-cols-2 justify-items-stretch ">
     @for (lecture of lectures(); track lecture.id) {
@@ -35,4 +55,4 @@
     </div>
     }
   </div>
-</article>
+</article> -->
