@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,10 +24,12 @@ public class Bingo {
   @GeneratedValue
   private Long id;
 
-  @ManyToOne
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "owner_id", nullable = false)
   private User owner;
 
-  @ManyToOne
+  @ManyToOne(optional = false)
+  @JoinColumn(name = "game_id", nullable = false)
   private Game game;
 
   @Column(nullable = false)
@@ -38,5 +42,9 @@ public class Bingo {
    * The card grid for the Bingo card (In ROW-MAJOR order as heightXwidth matrix)
    */
   @ManyToMany
-  private List<Card> cardMatrix;
+  @JoinTable(name = "Bingo_cardMatrix",
+          joinColumns = @JoinColumn(name = "bingo_id"),
+          inverseJoinColumns = @JoinColumn(name = "cardMatrix_id"))
+  private Set<Card> cardMatrix = new LinkedHashSet<>();
+
 }
