@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Game } from '../../../game';
+import { Game } from '../../../shared/models/Game';
 
 @Component({
   selector: 'app-lecture-card',
@@ -10,21 +10,30 @@ import { Game } from '../../../game';
 })
 export class LectureCardComponent {
 
-// TODO: actually get data from backend
-   currentLectureGame: Game = {
-    timeFrame : "",
-    endDate: new Date(2024, 11, 1, 16, 0), // imterpolate from timeframe
+  // TODO: actually get data from backend
+  currentLectureGame: Game = {
     id: 11,
-    professors: "Ueli Maurer",
-    startDate: new Date(2024, 11, 1, 14, 15), // imterpolate from timeframe
-    subjectTitle: "Diskrete Mathematik",
-    isUpcoming : isUpcoming(new Date()) // (supposed to be same as startDate)
+    lecture: {
+      dates: [],
+      id: 1,
+      name: '',
+      professors: []
+    },
+    professor: {
+      id: 1,
+      name: ''
+    },
+    timeframe: {
+      endDate: 1,
+      id: 1,
+      startDate: 1
+    }
   }
   protected readonly isUpcoming = isUpcoming;
 }
 
-function isUpcoming(date: Date) : boolean {
-  const today : Date = new Date();
+function isUpcoming(date: Date): boolean {
+  const today: Date = new Date();
 
   const output = today.getFullYear() === date.getFullYear() &&
     today.getMonth() === date.getMonth() &&

@@ -1,9 +1,10 @@
 import { Lecture } from "./Lecture";
-import { Timeframe } from "./TimeFrame";
+import { LectureTimeframe } from './LectureTimeframe';
+import { Professor } from './Professor';
 
 export interface Game {
   id: number,
-  lectureId: number,
-  lecturer: number,
-  timeframe: Timeframe
+  lecture: Lecture,
+  professor: Professor,
+  timeframe: LectureTimeframe
 }
