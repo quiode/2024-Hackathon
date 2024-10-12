@@ -5,6 +5,7 @@ import ch.hackathon.backend.services.GameService;
 import ch.hackathon.backend.services.LectureService;
 import ch.hackathon.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
  * This class should NEVER be present in production
  */
 @Component
+@Slf4j
 @RequiredArgsConstructor
 public class DevService {
     private final UserRepository userRepository;
@@ -30,6 +32,7 @@ public class DevService {
     @EventListener(ApplicationReadyEvent.class)
     public void generateFakeData() {
         if (!prod) {
+            log.warn("Database is being initialized with fake data!");
 
         }
     }
