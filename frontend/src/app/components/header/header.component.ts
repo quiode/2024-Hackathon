@@ -1,7 +1,7 @@
 import { Component, computed } from '@angular/core';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faMoon, faSun, faUser } from '@fortawesome/free-solid-svg-icons';
-import { ThemeService } from '../shared/services/theme.service';
+import { ThemeService } from '../../shared/services/theme.service';
 
 @Component({
   selector: 'app-header',

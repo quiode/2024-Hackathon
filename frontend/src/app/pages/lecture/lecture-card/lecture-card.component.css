@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+.enter-game-button{
+  @apply
+  rounded-full
+  shadow-md;
+
+}

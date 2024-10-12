@@ -1,0 +1,15 @@
+<div class="custom-card p-1 py-1.5 ">
+  <h2 class="listing-heading">
+    {{ currentLectureGame.subjectTitle }}
+  </h2>
+  <div class="space-y-1.5 flex flex-row justify-items-between">
+  <div>
+    <p> {{ currentLectureGame.professors }} </p>
+    <p> {{currentLectureGame.startDate }}  </p>
+  </div>
+  <div>
+    <button @if(currentLecture.isUpcoming) class="enter-game-button p-1"> Enter Game!</button>
+  </div>
+    </div>
+  <!-- TODO: 'Enter Game' button -->
+</div>
