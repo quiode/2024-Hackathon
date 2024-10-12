@@ -2,8 +2,6 @@ package ch.hackathon.backend.controllers;
 
 import ch.hackathon.backend.dtos.CreateCardDTO;
 import ch.hackathon.backend.models.Card;
-import ch.hackathon.backend.models.Lecture;
-import ch.hackathon.backend.models.Professor;
 import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.services.CardService;
 import lombok.RequiredArgsConstructor;
