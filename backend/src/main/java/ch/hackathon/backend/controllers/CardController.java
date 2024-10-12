@@ -20,7 +20,12 @@ public class CardController {
     public Card createCard(@RequestAttribute User creator,
                            @RequestBody CreateCardDTO ccdto) {
         //Get and pass on all necessary data to create a new card.
-        return cardService.createCard(creator, ccdto.getText(), ccdto.getLecture(), ccdto.getProfessor());
+        try{
+            return cardService.createCard(creator, ccdto.getText(), ccdto.getLectId(), ccdto.getProfId());
+        }
+        catch (IllegalArgumentException e){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage());
+        }
     }
 
     /*

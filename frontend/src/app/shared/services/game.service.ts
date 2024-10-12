@@ -45,7 +45,9 @@ export class GameService {
   }
 
   getBoard() {
-
+    return {
+      tiles: Array(16).fill(1)
+    }
   }
 
 }

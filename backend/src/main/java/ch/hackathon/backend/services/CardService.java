@@ -5,27 +5,39 @@ import ch.hackathon.backend.models.Lecture;
 import ch.hackathon.backend.models.Professor;
 import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.repositories.CardRepository;
+import ch.hackathon.backend.repositories.LectureRepository;
+import ch.hackathon.backend.repositories.ProfessorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @RequiredArgsConstructor
 @Service
 public class CardService {
     private final CardRepository cardRepository;
+    private final LectureRepository lectureRepository;
+    private final ProfessorRepository professorRepository;
 
-
-    public Card createCard(User creator, String text, Lecture lecture, Professor professor) {
+    public Card createCard(User creator, String text, long lectId, long profId) {
         Date creationDate = new Date(); //Allocates the current date.
-        Set<User> upvotes = new HashSet<>();
-        Set<User> downvotes = new HashSet<>();
+        Set<User> upvotes = new LinkedHashSet<>();
+        Set<User> downvotes = new LinkedHashSet<>();
+
+        Optional<Lecture> optLect =  lectureRepository.findById(lectId);
+        Optional<Professor> optProf = professorRepository.findById(profId);
+
+        if(optLect.isEmpty()) {
+            throw new IllegalArgumentException("No Lecture with given lectId exists!");
+        }
+        if(optProf.isEmpty()) {
+            throw new IllegalArgumentException("No Professor with given profId exists!");
+        }
+        Lecture lecture = optLect.get();
+        Professor prof = optProf.get();
 
         Card card = new Card(null, text, creationDate, creator,
-                upvotes, downvotes, lecture, professor);
+                upvotes, downvotes, lecture, prof);
         return cardRepository.save(card);
     }
 
