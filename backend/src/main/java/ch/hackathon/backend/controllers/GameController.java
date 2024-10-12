@@ -38,8 +38,15 @@ public class GameController {
 
     // FIXME: actually let the user/timeframe decide which professor is currently holding the lecture
     return gameService.createGame(lecture, lecture.getProfessors().stream().findAny().get(), currentTF);
-    
   }
 
-
+  @GetMapping("/lecture/{id}/current")
+  public Optional<Game> getCurrentGame(@RequestAttribute User user, @PathVariable Long id) {
+    Lecture lecture = lectureService.getById(id).orElseThrow(
+      () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No lecture with specified id")    
+    );
+    return gameService.getCurrentGameForLecture(lecture);
+    
+  }
+  
 }
