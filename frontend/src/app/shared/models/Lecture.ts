@@ -1,7 +1,9 @@
+import { Timeframe } from "./TimeFrame"
+
 export interface Lecture {
+  id: number,
   title: String,
   lecturers: Array<number>,
-  start: number,
-  end:number,
+  dates: Array<Timeframe>
   cards: Array<number>
 }

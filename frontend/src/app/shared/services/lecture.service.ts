@@ -12,7 +12,7 @@ export class LectureService {
 
   constructor(private http: HttpClient) { }
 
-  getLecture(): Observable<Lecture> {
+  getLecture(id: number): Observable<Lecture> {
     let lecture = this.lecture();
 
     // if (!lecture) {
@@ -21,10 +21,10 @@ export class LectureService {
     //   return of(lecture);
     // }
     return of({
+      id: 1,
       title: 'Mathematische Methoden der Physik',
       lecturers: [123, 123],
-      start: 1000,
-      end: 2000,
+      dates: [],
       cards: [1, 2]
     })
   }

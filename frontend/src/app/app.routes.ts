@@ -16,7 +16,11 @@ export const routes: Routes = [
   {
     path: 'lecture',
     component: LectureComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
+    children: [{
+      path: ':id',
+      component: LectureComponent
+    }]
   },
   {
     path: 'register',
@@ -26,6 +30,10 @@ export const routes: Routes = [
   {
     path: 'game',
     component: GameComponent,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
+    children: [{
+      path: ':id',
+      component: GameComponent
+    }]
   }
 ];
