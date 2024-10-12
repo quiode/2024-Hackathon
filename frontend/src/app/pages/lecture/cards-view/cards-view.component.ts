@@ -1,4 +1,4 @@
-import {Component, computed, input, output, signal, Signal} from '@angular/core';
+import { Component, computed, input, output, signal, Signal } from '@angular/core';
 import { Card } from '../../../shared/models/Card';
 import { Lecture } from '../../../shared/models/Lecture';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -9,13 +9,20 @@ import { CommonModule } from '@angular/common';
 import { CardAddDto, CardService } from '../../../shared/services/card.service';
 import { User } from '../../../shared/models/User';
 import { Professor } from '../../../shared/models/Professor';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-cards-view',
   standalone: true,
   imports: [FontAwesomeModule, CommonModule],
   templateUrl: './cards-view.component.html',
-  styleUrl: './cards-view.component.css'
+  styleUrl: './cards-view.component.css',
+  animations: [
+    trigger('formTrigger', [
+      transition(':enter', [style({ opacity: 0 }), animate('100ms', style({ opacity: 1 }))]),
+      transition(':leave', [animate('100ms', style({ opacity: 0 }))]),
+    ]),
+  ]
 })
 export class CardsViewComponent {
   user: Signal<User | undefined>;
@@ -42,8 +49,8 @@ export class CardsViewComponent {
   });
   hasCards: Signal<boolean> = computed(() => [...this.professorCardMap().values()].some(arr => arr.length > 0));
 
-  onCardAdd():void {
-    this.wantToEdit.set(true);
+  onCardAddClick() {
+    this.wantToEdit.update(edit => !edit);
   }
 
   onDownvote(card: Card) {
