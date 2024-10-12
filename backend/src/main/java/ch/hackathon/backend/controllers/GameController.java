@@ -8,6 +8,7 @@ import ch.hackathon.backend.repositories.LectureTimeframeRepository;
 import ch.hackathon.backend.services.GameService;
 import ch.hackathon.backend.services.LectureService;
 import ch.hackathon.backend.services.ParticipantService;
+import ch.hackathon.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
 
 import java.net.HttpCookie;
@@ -24,6 +25,7 @@ import org.springframework.web.server.ResponseStatusException;
 @RequiredArgsConstructor
 public class GameController {
   private final GameService gameService;
+  private final UserService userService;
   private final LectureService lectureService;
   private final ParticipantService participantService;
 
@@ -58,8 +60,6 @@ public class GameController {
     Game game = gameService.getById(id).orElseThrow(
       () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No game with this id exists!")
     );
-    participantService.createParticipant(user, game.getBingoWidth(), game.getBingoHeight(), game.getCardPool());
-
-    return game;
+    return userService.joinGame(user, id);
   }
 }

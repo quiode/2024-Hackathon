@@ -1,6 +1,7 @@
 package ch.hackathon.backend.services;
 
 import ch.hackathon.backend.models.Game;
+import ch.hackathon.backend.models.Participant;
 import ch.hackathon.backend.models.User;
 import ch.hackathon.backend.repositories.GameRepository;
 import ch.hackathon.backend.repositories.UserRepository;
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class UserService {
   private final UserRepository userRepository;
   private final GameRepository gameRepository;
+  private final ParticipantService participantService;
 
   /**
    * Finds a user by email and returns am empty optional if not found
@@ -43,7 +45,8 @@ public class UserService {
     Optional<Game> gameOpt = gameRepository.findById(gameId);
     if (gameOpt.isPresent()) {
       Game game = gameOpt.get();
-      game.getUsers().add(user);
+      Participant participant = participantService.createParticipant(user, game.getBingoWidth(), game.getBingoHeight(), game.getCardPool());
+      game.getParticipants().add(participant);
       gameRepository.save(game);
       return game;
     } else {

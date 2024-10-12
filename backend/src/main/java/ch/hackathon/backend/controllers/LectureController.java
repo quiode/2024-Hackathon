@@ -19,7 +19,7 @@ public class LectureController {
     private final LectureService lectureService;
 
     @PostMapping("/create")
-    public Lecture createLecture(@RequestAttribute User creator,
+    public Lecture createLecture(@RequestAttribute User user,
                                  @RequestBody CreateLectureDTO lecture) {
         Lecture createdLecture = lectureService.createLecture(lecture.getName(), lecture.getProfessors(), lecture.getDates());
         return createdLecture;
