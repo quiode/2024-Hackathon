@@ -1,0 +1,5 @@
+.wrapper {
+  @apply
+  mt-16
+  font-['Nunito']
+}

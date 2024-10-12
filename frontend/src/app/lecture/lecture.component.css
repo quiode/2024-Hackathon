@@ -1,0 +1,38 @@
+.wrapper {
+  @apply
+  p-3
+}
+
+.title {
+  @apply
+  font-bold
+  text-2xl
+  w-[90%]
+}
+
+.lecturers {
+
+}
+
+.lecturer {
+  @apply
+  underline
+  hover:text-fuchsia-400
+  transition-colors
+}
+
+.live-game {
+  @apply
+  mt-16
+  h-36
+  px-3
+  py-2
+  border-2
+  border-gray-500
+  rounded-md
+}
+
+.live-game-title {
+  @apply
+  font-bold
+}

@@ -1,1 +1,19 @@
-<p>lecture works!</p>
+<div class="wrapper">
+  <div class="title">{{ getTitle() }}</div>
+  <div class="lecturers">
+    @for (lecturer of getLecturers(); track lecturer; let last = $last) {
+      <a href="" class="lecturer">{{ lecturer }}</a>@if (!last) {<span>, </span>}
+    }
+  </div>
+  <div class="live-game">
+    <div class="live-game-title">
+      Live Game
+    </div>
+    @if (true) {
+
+    }
+    @else {
+      <span>No current live game...</span>
+    }
+  </div>
+</div>
