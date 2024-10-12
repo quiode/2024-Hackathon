@@ -11,5 +11,5 @@ import java.util.Optional;
 
 public interface BingoRepository extends JpaRepository<Bingo, Long> {
   List<Bingo> findAllByGame(Game game);
-  Optional<Bingo> findByGameAndUser(Game game, User user);
+  Optional<Bingo> findByGameAndOwner(Game game, User owner);
 }
