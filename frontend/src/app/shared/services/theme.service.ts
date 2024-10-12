@@ -12,7 +12,7 @@ export class ThemeService {
   private theme;
 
   constructor() {
-    this.theme = signal<Theme>(localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    this.theme = signal<Theme>(localStorage.getItem('theme') || window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
 
     // on change update local storage
     effect(() => {
