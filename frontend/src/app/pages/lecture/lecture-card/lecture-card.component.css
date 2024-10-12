@@ -3,7 +3,7 @@
 .enter-game-button{
   @apply
   bg-lime-400
-  rounded-full
+  rounded-lg
   shadow-md;
 
 }

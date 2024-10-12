@@ -16,6 +16,13 @@ import java.util.Set;
  *
  */
 public class Lecture {
+ public Lecture(String name, Set<Professor> professors, Set<LectureTimeframe> datesLectureTimeframes) {
+  id = null;
+  this.name = name;
+  this.professors = professors;
+  this.dates = datesLectureTimeframes;
+ }
+ 
   @Id
   @GeneratedValue
   private Long id;

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -27,4 +28,29 @@ public class CardService {
                 upvotes, downvotes, lecture, professor);
         return cardRepository.save(card);
     }
+
+    /*
+     * Cast a vote for a card. Throws a IllegalArgumentException.
+     */
+    public void vote(User user, Long cardId, Vote vote){
+        Optional<Card> optionalCard = cardRepository.findById(cardId);
+        if(optionalCard.isPresent()){
+            Card card = optionalCard.get();
+            Set<User> upvotes = card.getUpvotes();
+            Set<User> downvotes = card.getDownvotes();
+            if(vote == Vote.UP){
+                upvotes.add(user);
+                downvotes.remove(user);
+            }
+            else if(vote == Vote.DOWN){
+                downvotes.add(user);
+                upvotes.remove(user);
+            }
+        }
+        else{
+            //Give feedback, that there's no card with the given id.
+            throw new IllegalArgumentException("Card not found");
+        }
+    }
+
 }

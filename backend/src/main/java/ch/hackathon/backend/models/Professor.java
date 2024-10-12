@@ -13,6 +13,12 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 public class Professor {
+  public Professor(String name) {
+    this.id = null;
+    this.name = name;
+  }
+
+  
   @Id
   @GeneratedValue
   private Long id;
