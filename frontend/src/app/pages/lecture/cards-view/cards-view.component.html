@@ -6,6 +6,40 @@
   </div>
 
   @if (hasCards()) {
+    <hr class="basis-full border-fuchsia-500 dark:border-fuchsia-800 m-4">
+  }
+
+    @if (wantToEdit()){
+    <div id="form-section" class="mb-2 bg-fuchsia-200 dark:bg-white p-8 rounded shadow-lg w-full max-w-md">
+      <h2 class="text-2xl font-bold mb-4 text-gray-800">New Card</h2>
+      <form id="contact-form">
+        <div class="mb-4">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="title">Title</label>
+          <input id="title" type="text" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+        </div>
+        <div class="mb-4">
+          <label class="block text-gray-700 dark:text-gray-700 text-sm font-bold mb-2" for="professor">Professor</label>
+          <select id="professor" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500">
+            <option value="" disabled selected>Select a professor</option>
+            @for(prof of professors(); track prof.id){
+              <option [value]="prof"> {{prof.name}} </option>
+            }
+          </select>
+        </div>
+        <div class="mb-6">
+          <label class="block text-gray-700 text-sm font-bold mb-2" for="message">Message</label>
+          <textarea id="message" class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-fuchsia-500"></textarea>
+        </div>
+        <div class="flex items-center justify-between">
+          <button (click)="onSubmitCard()" id="submit-btn" type="submit" class="bg-fuchsia-700 dark:hover:bg-fuchsia-800 hover:bg-fuchsia-500 transition-all text-white font-bold py-2 px-4 rounded focus:outline-none">
+            Submit Card
+          </button>
+        </div>
+      </form>
+    </div>
+  }
+
+  @if (sortedCards().length > 0) {
   <hr class="basis-full border-fuchsia-500 dark:border-fuchsia-800 m-4">
 
   @for (profMap of professorCardMap(); track profMap[0].id) {

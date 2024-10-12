@@ -1,4 +1,4 @@
-import { Component, computed, input, output, Signal } from '@angular/core';
+import {Component, computed, input, output, signal, Signal} from '@angular/core';
 import { Card } from '../../../shared/models/Card';
 import { Lecture } from '../../../shared/models/Lecture';
 import { faChevronDown, faChevronUp } from '@fortawesome/free-solid-svg-icons';
@@ -23,6 +23,8 @@ export class CardsViewComponent {
     this.user = toSignal(userService.getUser());;
   }
 
+  wantToEdit = signal(false);
+
   // Font Awesome
   up = faChevronUp;
   down = faChevronDown;
@@ -40,8 +42,8 @@ export class CardsViewComponent {
   });
   hasCards: Signal<boolean> = computed(() => [...this.professorCardMap().values()].some(arr => arr.length > 0));
 
-  onCardAdd() {
-    throw new Error('Method not implemented.');
+  onCardAdd():void {
+    this.wantToEdit.set(true);
   }
 
   onDownvote(card: Card) {
@@ -58,5 +60,9 @@ export class CardsViewComponent {
 
   hasDownvoted(card: Card) {
     return card.downvotes.some(val => this.user()?.id == val.id);
+  }
+
+  onSubmitCard() {
+    //TODO: send data to backend
   }
 }
