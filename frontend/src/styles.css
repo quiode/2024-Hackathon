@@ -9,7 +9,7 @@
 }
 
 .custom-card {
-  @apply p-4 max-w-sm bg-fuchsia-400 rounded-lg border border-fuchsia-400 hover:bg-fuchsia-300 hover:border-fuchsia-300 shadow-md;
+  @apply max-w-sm bg-fuchsia-400 rounded-lg border border-fuchsia-400 hover:bg-fuchsia-300 hover:border-fuchsia-300 shadow-md;
 }
 
 .text-large {
