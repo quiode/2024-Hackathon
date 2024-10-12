@@ -38,7 +38,9 @@ export class GameService {
   }
 
   getBoard() {
-
+    return {
+      
+    }
   }
 
 }
