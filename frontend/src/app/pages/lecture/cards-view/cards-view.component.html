@@ -1,1 +1,14 @@
-<p>cards-view works!</p>
+<div class="w-100 flex flex-row flex-wrap justify-evenly border-solid border-2 border-gray-500 rounded-md">
+  <div class="w-100 grow rounded flex flex-row flex-nowrap m-1">
+    <div class="basis-3/4 dark:bg-fuchsia-950 bg-fuchsia-700 text-white p-1">
+      @if (cards().length == 0) {
+      <h1>There are currently no cards. Try adding one!</h1>
+      } @else {
+      <h1>There are {{ cards().length }} cards!</h1>
+      }
+    </div>
+    <div class="basis-1/4">
+      this is a test
+    </div>
+  </div>
+</div>

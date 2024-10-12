@@ -16,4 +16,9 @@
       <span>No current live game...</span>
     }
   </div>
+
+  <div>
+    <h1>Cards</h1>
+    <app-cards-view [cards]="cards()" (cardAdd)="onCardAdd($event)"></app-cards-view>
+  </div>
 </div>

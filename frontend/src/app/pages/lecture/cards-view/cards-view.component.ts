@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
+import { Card } from '../../../shared/models/Card';
+import { Lecture } from '../../../shared/models/Lecture';
 
 @Component({
   selector: 'app-cards-view',
@@ -8,5 +10,6 @@ import { Component } from '@angular/core';
   styleUrl: './cards-view.component.css'
 })
 export class CardsViewComponent {
-
+  cards = input.required<Card[]>();
+  cardAdd = output<Card>();
 }
