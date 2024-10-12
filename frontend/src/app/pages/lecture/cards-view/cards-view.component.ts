@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { UserService } from '../../../shared/services/user.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
+import { CardAddDto } from '../../../shared/services/card.service';
 
 @Component({
   selector: 'app-cards-view',
@@ -27,14 +28,14 @@ export class CardsViewComponent {
   // IO
   cards = input.required<Card[]>();
   lecture = input.required<Lecture>();
-  cardAdd = output<Card>();
+  cardAdd = output<CardAddDto>();
 
   // Computed
   professors = computed(() => this.lecture().professors);
   sortedCards = computed(() => [...this.cards().sort((a, b) => a.creationDate - b.creationDate)])
 
   onCardAdd() {
-    alert('TODO!');
+    throw new Error('Method not implemented.');
   }
 
   onDownvote(card: Card) {
