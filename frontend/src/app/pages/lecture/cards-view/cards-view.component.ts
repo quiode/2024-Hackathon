@@ -41,10 +41,6 @@ export class CardsViewComponent {
   hasCards: Signal<boolean> = computed(() => [...this.professorCardMap().values()].some(arr => arr.length > 0));
 
   onCardAdd() {
-    this.professorCardMap().size
-    for (const key in this.professorCardMap()) {
-
-    }
     throw new Error('Method not implemented.');
   }
 
