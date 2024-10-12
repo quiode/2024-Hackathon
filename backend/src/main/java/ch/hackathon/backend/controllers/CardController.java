@@ -19,6 +19,7 @@ public class CardController {
     public Card createCard(@RequestAttribute User creator,
                            @RequestBody CreateCardDTO ccdto) {
         //Get and pass on all necessary data to create a new card.
-        return cardService.createCard(creator, ccdto.getText(), ccdto.getLecture(), ccdto.getProfessor());
+        //return cardService.createCard(creator, ccdto.getText(), ccdto.getLecture(), ccdto.getProfessor());
+        return null;
     }
 }
