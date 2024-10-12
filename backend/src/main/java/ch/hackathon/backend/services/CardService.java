@@ -40,22 +40,28 @@ public class CardService {
     }
 
     /**
-     * Cast a vote for a card. Throws a IllegalArgumentException if theres no card with cardId.
+     * Cast a vote for a card. Throws a IllegalArgumentException if there's no card with cardId.
      */
     public void vote(User user, Long cardId, Vote vote){
+        //Get card from id.
         Optional<Card> optionalCard = cardRepository.findById(cardId);
         if(optionalCard.isPresent()){
             Card card = optionalCard.get();
+
+            //Get the upvote and download sets, and change them accordingly to "vote".
             Set<User> upvotes = card.getUpvotes();
             Set<User> downvotes = card.getDownvotes();
             if(vote == Vote.UP){
-                upvotes.add(user);
                 downvotes.remove(user);
+                upvotes.add(user);
             }
             else if(vote == Vote.DOWN){
-                downvotes.add(user);
                 upvotes.remove(user);
+                downvotes.add(user);
             }
+
+            //Save changed card in the db.
+            cardRepository.save(card);
         }
         else{
             //Give feedback, that there's no card with the given id.
