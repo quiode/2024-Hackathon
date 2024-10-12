@@ -31,7 +31,7 @@ public class User {
   /**
    * The lectures this student attends
    */
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "UserTable_lectures",
           joinColumns = @JoinColumn(name = "user_id"),
           inverseJoinColumns = @JoinColumn(name = "lectures_id"))
@@ -40,7 +40,7 @@ public class User {
   /**
    *
    */
-  @ManyToOne
+  @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "current_game_id")
   private Game currentGame;
 

@@ -37,7 +37,7 @@ public class Lecture {
    * 
    * must contain at least one element
    */
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   private Set<Professor> professors;
 
   /**
@@ -47,7 +47,7 @@ public class Lecture {
    * Note that the timeframe should uniquely belong to a specific lecture
    *
    */
-  @OneToMany(cascade = CascadeType.ALL)
+  @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   private Set<LectureTimeframe> dates;
 
 

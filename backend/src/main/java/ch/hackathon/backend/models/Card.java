@@ -37,7 +37,7 @@ public class Card {
   /**
    * The user that designed this card
    */
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "creator_id", nullable = false)
   private User creator;
 
@@ -45,7 +45,7 @@ public class Card {
    * We save all users that upvoted this post to
    * be able to prevent multiple upvotes
    */
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "Card_upvotes",
           joinColumns = @JoinColumn(name = "card_id"),
           inverseJoinColumns = @JoinColumn(name = "upvotes_id"))
@@ -55,7 +55,7 @@ public class Card {
    * We save all users that downvoted this post to
    * be able to prevent multiple downvotes
    */
-  @ManyToMany
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "Card_downvotes",
           joinColumns = @JoinColumn(name = "card_id"),
           inverseJoinColumns = @JoinColumn(name = "downvotes_id"))
@@ -64,14 +64,14 @@ public class Card {
   /**
    * Cards are always created for specific lectures
    */
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "lecture_id", nullable = false)
   private Lecture lecture;
 
   /**
    * Cards are always references to a specific professors habits, words etc.
    */
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "professor_id", nullable = false)
   private Professor professor;
 

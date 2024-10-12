@@ -16,15 +16,15 @@ public class Game {
   @GeneratedValue
   private Long id;
 
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "lecture_id", nullable = false)
   private Lecture lecture;
 
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "professor_id", nullable = false)
   private Professor professor;
 
-  @ManyToOne(optional = false)
+  @ManyToOne(optional = false, fetch = FetchType.EAGER)
   @JoinColumn(name = "lecture_timeframe_id", nullable = false)
   private LectureTimeframe lectureTimeframe;
 

@@ -18,7 +18,6 @@ public class Professor {
     this.name = name;
   }
 
-  
   @Id
   @GeneratedValue
   private Long id;
