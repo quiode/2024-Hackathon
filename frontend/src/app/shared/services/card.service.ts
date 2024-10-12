@@ -13,21 +13,25 @@ import { Professor } from '../models/Professor';
 export class CardService {
   private cardsByLecture = signal<Map<number, Card[]>>(new Map());
 
-  constructor(private http: HttpClient) { }
-
-  fetchCardsByLecture(lecture: Lecture) {
-    // TODO
+  constructor(private http: HttpClient) {
   }
 
-  getCardsByLecture(lecture: Lecture): Signal<Card[]> {
-    // update value by values from db
+  fetchCardsByLecture(lecture: Lecture) {
     this.http.get<Card[]>(backendURL() + "/card/byLecture/" + lecture.id)
       .subscribe(
         cards => this.cardsByLecture.update(map => {
           let newMap = new Map(map);
           newMap.set(lecture.id, cards);
           return newMap;
-        }));
+        })
+      );
+  }
+
+  getCardsByLecture(lecture: Lecture): Signal<Card[]> {
+    // get cards if not already gotten
+    if (!this.cardsByLecture().has(lecture.id)) {
+      this.fetchCardsByLecture(lecture);
+    }
 
     return computed(() => this.cardsByLecture().get(lecture.id) || []);
   }
@@ -38,7 +42,7 @@ export class CardService {
       lectId: dto.lecture.id,
       prof: dto.prof.id,
     }).pipe(
-      tap(_ => this.getCardsByLecture(dto.lecture)()) // update locale stored cards
+      tap(_ => this.fetchCardsByLecture(dto.lecture)) // update locale stored cards
     );
   }
 }
