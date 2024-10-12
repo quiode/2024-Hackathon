@@ -2,7 +2,7 @@ import { Component, signal, Signal } from '@angular/core';
 import { GameService } from '../../shared/services/game.service';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BoardComponent } from '../../components/board/board.component';
+import { BoardComponent } from './board/board.component';
 import { Game } from '../../shared/models/Game';
 
 @Component({
