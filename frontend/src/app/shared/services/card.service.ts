@@ -40,7 +40,7 @@ export class CardService {
     return this.http.post<void>(backendURL() + "/card/create", {
       text: dto.text,
       lectId: dto.lecture.id,
-      prof: dto.prof.id,
+      profId: dto.prof.id,
     }).pipe(
       tap(_ => this.fetchCardsByLecture(dto.lecture)) // update locale stored cards
     );

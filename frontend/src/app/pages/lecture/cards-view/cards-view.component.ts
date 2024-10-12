@@ -10,11 +10,12 @@ import { CardAddDto, CardService } from '../../../shared/services/card.service';
 import { User } from '../../../shared/models/User';
 import { Professor } from '../../../shared/models/Professor';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-cards-view',
   standalone: true,
-  imports: [FontAwesomeModule, CommonModule],
+  imports: [FontAwesomeModule, CommonModule, ReactiveFormsModule],
   templateUrl: './cards-view.component.html',
   styleUrl: './cards-view.component.css',
   animations: [
@@ -25,12 +26,15 @@ import { animate, style, transition, trigger } from '@angular/animations';
   ]
 })
 export class CardsViewComponent {
+  // Signals
   user: Signal<User | undefined>;
-  constructor(private userService: UserService, private cardService: CardService) {
-    this.user = toSignal(userService.getUser());;
-  }
-
   wantToEdit = signal(false);
+
+  // From
+  cardFrom = new FormGroup({
+    professor: new FormControl<Professor | null>(null, [Validators.required]),
+    text: new FormControl<string>('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)])
+  });
 
   // Font Awesome
   up = faChevronUp;
@@ -49,7 +53,11 @@ export class CardsViewComponent {
   });
   hasCards: Signal<boolean> = computed(() => [...this.professorCardMap().values()].some(arr => arr.length > 0));
 
-  onCardAddClick() {
+  constructor(private userService: UserService, private cardService: CardService) {
+    this.user = toSignal(userService.getUser());;
+  }
+
+  toggleCardForm() {
     this.wantToEdit.update(edit => !edit);
   }
 
@@ -70,6 +78,16 @@ export class CardsViewComponent {
   }
 
   onSubmitCard() {
-    //TODO: send data to backend
+    if (this.cardFrom.valid) {
+      const value = this.cardFrom.value;
+
+      this.wantToEdit.set(false);
+      this.hasDownvoted
+      this.cardService.addCard({
+        lecture: this.lecture(),
+        prof: value.professor!,
+        text: value.text!
+      }).subscribe(_ => this.cardFrom.reset());
+    }
   }
 }
