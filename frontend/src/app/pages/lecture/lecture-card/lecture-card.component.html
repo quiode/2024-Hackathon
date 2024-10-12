@@ -1,14 +1,16 @@
-<div class="custom-card p-1 py-1.5 ">
+<div class="custom-card">
   <h2 class="listing-heading">
     {{ currentLectureGame.subjectTitle }}
   </h2>
-  <div class="space-y-1.5 flex flex-row justify-items-between">
-  <div>
+  <div class=" flex flex-row justify-items-between">
+  <div class="text-clip">
     <p> {{ currentLectureGame.professors }} </p>
-    <p> {{currentLectureGame.startDate }}  </p>
+    <p> {{currentLectureGame.startDate.getDate().toString() + "." + currentLectureGame.startDate.getMonth().toString() + "." +
+    currentLectureGame.startDate.getFullYear().toString() + " " + currentLectureGame.startDate.getHours().toString()
+    + ":" + currentLectureGame.startDate.getMinutes().toString()}}  </p>
   </div>
   <div @if(currentLecture.isUpcoming){}>
-    <button  class="enter-game-button p-4 "> Enter Game!</button>
+    <button  class="flex justify-end items center enter-game-button text-lg "> Enter Game! </button>
   </div>
     </div>
   <!-- TODO: 'Enter Game' button -->
