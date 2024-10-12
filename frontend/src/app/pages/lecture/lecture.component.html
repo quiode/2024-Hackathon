@@ -1,24 +1,28 @@
-@if(lecture != undefined) {
-  <div class="wrapper">
-    <div class="title">{{ lecture()?.title }}</div>
-      <div class="lecturers">
-        @for (lecturer of lecture()?.lecturers; track lecturer; let last = $last) {
-          <a href="" class="lecturer">{{ lecturer }}</a>@if (!last) {<span>, </span>}
-        }
-      </div>
-      <div class="live-game">
-        <div class="live-game-title">
-          Live Game
-        </div>
-        @if (true) {
-    
-        }
-        @else {
-          <span>No current live game...</span>
-        }
-      </div>
+<div class="wrapper">
+  @if (lecture(); as lecture) {
+  <div class="title">{{ lecture.name }}</div>
+  <div class="lecturers">
+    @for (lecturer of lecture.professors; track $index; let last = $last) {
+    <a href="" class="lecturer">{{ lecturer }}</a>@if (!last) {<span>, </span>}
+    }
+  </div>
+  <div class="live-game">
+    <div class="live-game-title">
+      Live Game
     </div>
-} @else {
-  awdjanwdk
-  <app-not-found></app-not-found>
-}
+    @if (true) {
+
+    }
+    @else {
+    <span>No current live game...</span>
+    }
+  </div>
+
+  <div>
+    <h1>Cards</h1>
+    <app-cards-view [lecture]="lecture" [cards]="cards()" (cardAdd)="onCardAdd($event)"></app-cards-view>
+  </div>
+  } @else {
+  <h1>Lecture not found?!?</h1>
+  }
+</div>

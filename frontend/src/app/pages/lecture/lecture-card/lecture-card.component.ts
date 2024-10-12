@@ -12,13 +12,13 @@ export class LectureCardComponent {
 
 // TODO: actually get data from backend
    currentLectureGame: Game = {
-    timeFrame : "",
-    endDate: new Date(2024, 11, 1, 16, 0), // imterpolate from timeframe
     id: 11,
-    professors: "Ueli Maurer",
-    startDate: new Date(2024, 11, 1, 14, 15), // imterpolate from timeframe
-    subjectTitle: "Diskrete Mathematik",
-    isUpcoming : isUpcoming(new Date()) // (supposed to be same as startDate)
+    lectureId: 1,
+    lecturer: 1,
+    timeframe: {
+      end: 1,
+      start: 2
+    }
   }
   protected readonly isUpcoming = isUpcoming;
 }

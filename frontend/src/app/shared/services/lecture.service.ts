@@ -25,11 +25,10 @@ export class LectureService {
     //   return of(lecture);
     // }
     return of({
-      id: 1,
-      title: 'Mathematische Methoden der ',
-      lecturers: [1],
+      name: 'Mathematische Methoden der Physik',
       dates: [],
-      cards: []
-    })
+      id: 1,
+      professors: []
+    } satisfies Lecture)
   }
 }
