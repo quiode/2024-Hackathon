@@ -1,18 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal, Signal } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LectureCardComponent } from '../lecture/lecture-card/lecture-card.component';
-import {FaIconComponent} from "@fortawesome/angular-fontawesome";
-import {faBolt} from "@fortawesome/free-solid-svg-icons";
-import {NgForOf} from "@angular/common";
-import {Observable} from "rxjs";
-import {Game} from "../../shared/models/Game";
+import { FaIconComponent } from "@fortawesome/angular-fontawesome";
+import { faBolt } from "@fortawesome/free-solid-svg-icons";
+import { LectureService } from '../../shared/services/lecture.service';
 import { Lecture } from '../../shared/models/Lecture';
-import { LectureTimeframe } from '../../shared/models/LectureTimeframe';
 
 @Component({
   selector: 'app-dashbord',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, LectureCardComponent, FaIconComponent, NgForOf],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, LectureCardComponent, FaIconComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
@@ -20,13 +17,10 @@ import { LectureTimeframe } from '../../shared/models/LectureTimeframe';
 
 
 export class DashboardComponent {
-  lectures: Lecture[];
+  lectures;
 
-  constructor() {
-    this.lectures = [];
-  }
-
-  ngOnInit() {
+  constructor(private lectureService: LectureService) {
+    this.lectures = lectureService.getLectures();
   }
 
   protected readonly faBolt = faBolt;

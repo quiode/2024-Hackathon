@@ -1,34 +1,29 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, effect, Injectable, Signal, signal } from '@angular/core';
 import { Lecture } from '../models/Lecture';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, combineLatest, Observable, of, tap } from 'rxjs';
 import { backendURL } from '../constants';
+import { createWatch } from '@angular/core/primitives/signals';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LectureService {
-  private lecture = signal<Lecture | null>(null);
+  private lectures = signal<Lecture[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.fetchLectures();
+   }
 
-  getLecture(id: number): Observable<Lecture> {
-    let lecture = this.lecture();
+  getLecture(id: number): Signal<Lecture | undefined> {
+    return computed(() => this.lectures().find(lecture => lecture.id === id));
+  }
 
-    // if (!lecture) {
-    //   return this.http.get<Lecture>(backendURL() + "/lecture", {
-    //     params: {
-    //       id: id
-    //     }
-    //   }).pipe(tap(val => this.lecture.set(val)));
-    // } else {
-    //   return of(lecture);
-    // }
-    return of({
-      name: 'Mathematische Methoden der Physik',
-      dates: [],
-      id: 1,
-      professors: []
-    } satisfies Lecture)
+  getLectures(): Signal<Lecture[]> {
+    return this.lectures.asReadonly();
+  }
+
+  fetchLectures() {
+    this.http.get<Lecture[]>(backendURL() + "/lecture").subscribe(lectures => this.lectures.set(lectures));
   }
 }

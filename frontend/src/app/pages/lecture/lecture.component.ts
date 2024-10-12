@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, Signal, signal } from '@angular/core';
+import { Component, computed, effect, OnInit, Signal, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { LectureService } from '../../shared/services/lecture.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -24,7 +24,7 @@ export class LectureComponent {
       this.lecture = signal(undefined);
     } else {
       let id = route.snapshot.firstChild.params['id'];
-      this.lecture = toSignal(this.lectureService.getLecture(id));
+      this.lecture = lectureService.getLecture(id);
     }
 
     this.cards = computed(() => {
@@ -37,6 +37,7 @@ export class LectureComponent {
       }
     });
   }
+}
 
   onCardAdd(card: CardAddDto) {
     this.cardService.addCard(card).subscribe(_ => alert('card created'));

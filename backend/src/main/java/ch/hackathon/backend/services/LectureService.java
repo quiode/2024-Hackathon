@@ -22,10 +22,6 @@ public class LectureService {
   private final ProfessorRepository professorRepository;
   private final LectureTimeframeRepository lectureTimeframeRepository;
 
-  public Optional<Lecture> getLectureById(Long id) {
-    return lectureRepository.findById(id);
-  }
-
    /**
    * Creates a with specified values and returns it
    */

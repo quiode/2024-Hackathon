@@ -25,14 +25,12 @@ public class LectureController {
         return createdLecture;
     }
 
+    /**
+     * @return the lecture with id lectId if the student takes the lecture
+     */
     @GetMapping("/{lectId}")
-    public Lecture getLecture(@PathVariable Long lectId) {
-        Optional<Lecture> lecture = lectureService.getLectureById(lectId);
-        if (lecture.isPresent()) {
-            return lecture.get();
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+    public Lecture getLecture(@RequestAttribute User user, @PathVariable Long lectId) {
+        return user.getLectures().stream().filter(lecture -> lecture.getId().equals(lectId)).findFirst().orElse(null);
     }
 
     @GetMapping("")

@@ -1,9 +1,12 @@
 <article class="content-stretch border-4">
   <p class="h-10 text-4xl m-2"> Upcoming Games!</p>
-  <div class="max-h-20 overflow-scroll overscroll-auto py-1 flex-wrap  justify-items-stretch">
-     @for(lecture of getUpcoming(); track lecture.dates){
-       <div class="mb-2"> <app-lecture-card></app-lecture-card> </div>
-          }
+  <div class=" max-h-20 overflow-scroll overscroll-auto py-1 flex-wrap  justify-items-stretch">
+    <!--
+    <div class="mb-2"> <app-lecture-card></app-lecture-card> </div>
+    <div class="mt-2 mb-2"> <app-lecture-card></app-lecture-card> </div>
+    <div class="mt-2 mb-2"> <app-lecture-card></app-lecture-card> </div>
+    <div class="mt-2 mb-2"> <app-lecture-card></app-lecture-card> </div>
+  -->
   </div>
 </article>
 
@@ -12,8 +15,7 @@
   <div class="flex flex-row justify-items-between">
 
     <div class="p-3.5">
-      <fa-icon class="hover:cursor-pointer hover:text-fuchsia-400 ease-linear transition-all" size="4x"
-               [icon]="faBolt">
+      <fa-icon class="hover:cursor-pointer hover:text-fuchsia-400 ease-linear transition-all" size="4x" [icon]="faBolt">
       </fa-icon>
     </div>
     <div class="text-3xl p-2">
@@ -25,8 +27,12 @@
 <article class="content-center border-4 ">
   <p class="h-10 text-4xl m-2"> My Lectures</p>
   <div class=" h-50 overflow-scroll overscroll-auto py-4 flex-wrap grid grid-cols-2 justify-items-stretch ">
-    @for(lecture of getLectures(); track lecture.id){
-      <div class="py-1.5 px-0.5"> <app-lecture-card></app-lecture-card> </div>
+    @for (lecture of lectures(); track lecture.id) {
+    <div class="py-1.5 px-0.5">
+      <a [routerLink]="['lecture', lecture.id]">
+        <app-lecture-card [lecture]="lecture"></app-lecture-card>
+      </a>
+    </div>
     }
   </div>
 </article>
