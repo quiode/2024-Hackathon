@@ -4,6 +4,7 @@ import { negateAuthGuard } from './shared/guards/negate-auth.guard';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LectureComponent } from './pages/lecture/lecture.component';
 import { RegisterComponent } from './pages/lecture/register/register.component';
+import { GameComponent } from './pages/game/game/game.component';
 
 export const routes: Routes = [
   {
@@ -16,9 +17,15 @@ export const routes: Routes = [
     path: 'lecture',
     component: LectureComponent,
     canActivate: [authGuard]
-  }, {
+  },
+  {
     path: 'register',
     component: RegisterComponent,
     canActivate: [negateAuthGuard]
+  },
+  {
+    path: 'game',
+    component: GameComponent,
+    canActivate: [authGuard]
   }
 ];

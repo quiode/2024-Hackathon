@@ -22,7 +22,7 @@ export class LectureService {
     // }
     return of({
       title: 'Mathematische Methoden der Physik',
-      lecturers: ['Peter Hinz, Alessio Figalli'],
+      lecturers: [123, 123],
       start: 1000,
       end: 2000,
       cards: [1, 2]
