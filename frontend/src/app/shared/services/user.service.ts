@@ -2,7 +2,7 @@ import { Injectable, signal } from '@angular/core';
 import { User } from '../models/User';
 import { HttpClient } from '@angular/common/http';
 import { backendURL } from '../constants';
-import { lastValueFrom, of, tap } from 'rxjs';
+import { lastValueFrom, Observable, of, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,11 +12,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  registerUser() {
+  registerUser(): Observable<User> {
     return this.http.post<User>(backendURL() + "/user/register", {}).pipe(tap(val => this.user.set(val)));
   }
 
-  getUser() {
+  getUser(): Observable<User> {
     let user = this.user();
 
     if (!user) {
