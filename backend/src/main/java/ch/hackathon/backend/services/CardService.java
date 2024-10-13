@@ -22,8 +22,8 @@ public class CardService {
 
     public Card createCard(User creator, String text, long lectId, long profId) {
         Instant creationDate = Instant.now(); //Allocates the current date.
-        Set<User> upvotes = new LinkedHashSet<>();
-        Set<User> downvotes = new LinkedHashSet<>();
+        Set<Long> upvotes = new LinkedHashSet<>();
+        Set<Long> downvotes = new LinkedHashSet<>();
 
         //Get Optionals from Ids.
         Optional<Lecture> optLect =  lectureRepository.findById(lectId);
@@ -49,15 +49,15 @@ public class CardService {
             Card card = optionalCard.get();
 
             //Get the upvote and download sets, and change them accordingly to "vote".
-            Set<User> upvotes = card.getUpvotes();
-            Set<User> downvotes = card.getDownvotes();
+            Set<Long> upvotes = card.getUpvotes();
+            Set<Long> downvotes = card.getDownvotes();
             if(vote == Vote.UP){
-                downvotes.remove(user);
-                upvotes.add(user);
+                downvotes.remove(user.getId());
+                upvotes.add(user.getId());
             }
             else if(vote == Vote.DOWN){
-                upvotes.remove(user);
-                downvotes.add(user);
+                upvotes.remove(user.getId());
+                downvotes.add(user.getId());
             }
 
             //Save changed card in the db.
