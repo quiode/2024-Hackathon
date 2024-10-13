@@ -42,7 +42,11 @@ public class Game {
           inverseJoinColumns = @JoinColumn(name = "game_id"))
   private Set<Participant> participants;
 
-  @ManyToMany
+  @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
+  @JoinColumn(name = "game_id", nullable = false)
+  private Set<ValidationEvent> validationEvents = new LinkedHashSet<>();
+
+  @ManyToMany(fetch = FetchType.EAGER)
   @JoinTable(name = "Game_cardPool",
           joinColumns = @JoinColumn(name = "game_id"),
           inverseJoinColumns = @JoinColumn(name = "cardPool_id"))

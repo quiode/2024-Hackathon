@@ -4,19 +4,16 @@ import ch.hackathon.backend.models.Game;
 import ch.hackathon.backend.models.Lecture;
 import ch.hackathon.backend.models.LectureTimeframe;
 import ch.hackathon.backend.models.User;
-import ch.hackathon.backend.repositories.LectureTimeframeRepository;
 import ch.hackathon.backend.services.GameService;
 import ch.hackathon.backend.services.LectureService;
 import ch.hackathon.backend.services.ParticipantService;
 import ch.hackathon.backend.services.UserService;
 import lombok.RequiredArgsConstructor;
 
-import java.net.HttpCookie;
 import java.time.Instant;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -27,7 +24,6 @@ public class GameController {
   private final GameService gameService;
   private final UserService userService;
   private final LectureService lectureService;
-  private final ParticipantService participantService;
 
   @PostMapping("/lecture/{id}/current")
   public Optional<Long> createGame(@RequestAttribute User user, @PathVariable Long id) {
@@ -61,5 +57,15 @@ public class GameController {
       () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No game with this id exists!")
     );
     return userService.joinGame(user, id);
+  }
+
+  /**
+   * Handles clicking on a card in a bingoTable.
+   * @param user The user who clicked on the card.
+   * @param pos The position in the bing-board: index in row-major card-list.
+   */
+  @PostMapping("/clickcard/{pos}")
+  public void clickCard(@RequestAttribute User user, @PathVariable Integer pos) {
+    gameService.clickCard(user, pos);
   }
 }
