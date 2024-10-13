@@ -40,7 +40,7 @@ public class Game {
           inverseJoinColumns = @JoinColumn(name = "game_id"))
   private Set<Participant> participants;
 
-  @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER)
+  @OneToMany(orphanRemoval = true, fetch = FetchType.EAGER, cascade = CascadeType.ALL)
   @JoinColumn(name = "game_id", nullable = false)
   private Set<ValidationEvent> validationEvents = new LinkedHashSet<>();
 
