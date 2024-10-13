@@ -45,10 +45,10 @@ public class Game {
   private Set<ValidationEvent> validationEvents = new LinkedHashSet<>();
 
   @ManyToMany
-  @JoinTable(name = "Game_cards",
+  @JoinTable(name = "Game_cardPool",
           joinColumns = @JoinColumn(name = "game_id"),
-          inverseJoinColumns = @JoinColumn(name = "cards_id"))
-  private List<Card> cards = new ArrayList<>();
+          inverseJoinColumns = @JoinColumn(name = "cardPool_id"))
+  private List<Card> cardPool = new ArrayList<>();
 
   @Column(name = "bingoWidth", nullable = false)
   private Integer bingoWidth;
