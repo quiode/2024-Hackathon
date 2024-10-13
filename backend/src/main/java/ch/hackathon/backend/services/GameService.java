@@ -191,6 +191,7 @@ public class GameService {
 
     /**
      * Create ValidationEvent by adding a new one to game and saving the game
+     * The provided game is invalidated, so use the returned one instead
      */
     public Pair<Game, ValidationEvent> createValidationEvent(Game game, Card card) {
         Instant startTime = Instant.now();
