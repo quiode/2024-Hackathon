@@ -30,7 +30,7 @@ public class GameService {
     private final BingoRepository bingoRepository;
 
     //Used for clickCard.
-    private Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
 
     public Optional<Game> getById(long id) { return gameRepository.findById(id); };
 
