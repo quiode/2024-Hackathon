@@ -35,9 +35,6 @@ public class GameService {
         return gameRepository.findById(id);
     }
 
-    ;
-
-
     public Optional<Game> createGame(Lecture lecture, Professor professor, LectureTimeframe timeframe) {
         long cardCount = cardRepository.count();
         if (cardCount == 0) return Optional.empty();
