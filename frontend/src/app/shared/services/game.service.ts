@@ -45,8 +45,10 @@ export class GameService {
     return of(this.getGame(id));
   }
 
-  joinGame() {
+  joinGame(id: number) {
     let game = signal<Game | undefined>(undefined);
+    this.http.get<Game>(backendURL() + '/join/' + id)
+      .subscribe(game => game);
   }
 
   getBoard() {
