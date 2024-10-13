@@ -19,7 +19,7 @@ public class BingoService {
     public Bingo createBingo(int width, int height, Set<Card> cardPool) {
 
         //Get cards and shuffle them.
-        List<Card> cards = new ArrayList<Card>(cardPool);
+        List<Card> cards = new ArrayList<>(cardPool);
         Collections.shuffle(cards);
         //Truncate List to first width*heigth cards.
         cards = cards.subList(0, width*height);

@@ -14,5 +14,4 @@ public interface GameRepository extends JpaRepository<Game, Long> {
    */ 
   List<Game> findAllByLectureTimeframe(LectureTimeframe timeframe);
 
-  List<Participant> findByParticipants_User(User user);
 }

@@ -7,7 +7,6 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -102,11 +101,11 @@ public class GameService {
         Game game = optGame.orElseThrow(() -> new IllegalArgumentException("No current Game with given User"));
         Participant p = game.getParticipants().stream()
                 .filter(u -> u.getUser().getId().equals(user.getId())).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException());
+                .orElseThrow(IllegalArgumentException::new);
         Card card =  p.getBingo().getCards().get(pos);
 
         //Get ValidationEvent, or create a new one.
-        ValidationEvent valEv = null;
+        ValidationEvent valEv;
         Optional<ValidationEvent> optValEv = game.getValidationEvents().stream().filter(v -> v.getCard().equals(card)).findFirst();
         valEv = optValEv.orElseGet(() -> new ValidationEvent(null, card, VALIDATION_PERCENT_NEEDED, VALIDATION_TIME_SECONDS, Instant.now(), new HashSet<>()));
 
