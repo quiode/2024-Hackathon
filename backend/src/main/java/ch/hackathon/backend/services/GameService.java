@@ -124,16 +124,22 @@ public class GameService {
                     .stream()
                     .filter(v -> v.getCard().equals(card))
                     .findFirst();
-            valEv = optValEv.orElseGet(
-                    () -> new ValidationEvent(null, card, VALIDATION_PERCENT_NEEDED, VALIDATION_TIME_SECONDS,
-                            Instant.now(), new HashSet<>()));
+
+            if (optValEv.isPresent()) {
+                valEv = optValEv.get();
+            } else {
+                Pair<Game, ValidationEvent> pair = createValidationEvent(game, card);
+                game = pair.getValue0();
+                valEv = pair.getValue1();
+            }
 
             //Check if time window is over.
             Instant endTime = valEv.getStartTime().plusSeconds(valEv.getPeriodSeconds());
             if (endTime.isAfter(Instant.now())) {
                 //Reset valEv.
-                valEv = new ValidationEvent(null, card, VALIDATION_PERCENT_NEEDED, VALIDATION_TIME_SECONDS,
-                        Instant.now(), new HashSet<>());
+                Pair<Game, ValidationEvent> pair = createValidationEvent(game, card);
+                valEv = pair.getValue1();
+                game = pair.getValue0();
 
                 //Add user to clickedCards of valEv, and save valEv.
                 valEv.getClickedCard().add(user);
