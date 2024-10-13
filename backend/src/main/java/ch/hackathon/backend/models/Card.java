@@ -34,6 +34,8 @@ public class Card {
   @CreatedDate
   private Instant creationDate;
 
+
+
   /**
    * The user that designed this card
    */
@@ -45,21 +47,19 @@ public class Card {
    * We save all users that upvoted this post to
    * be able to prevent multiple upvotes
    */
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "Card_upvotes",
-          joinColumns = @JoinColumn(name = "card_id"),
-          inverseJoinColumns = @JoinColumn(name = "upvotes_id"))
-  private Set<User> upvotes = new LinkedHashSet<>();
+  @ElementCollection
+  @Column(name = "upvote")
+  @CollectionTable(name = "Card_upvotes", joinColumns = @JoinColumn(name = "owner_id"))
+  private Set<Long> upvotes = new LinkedHashSet<>();
 
   /**
    * We save all users that downvoted this post to
    * be able to prevent multiple downvotes
    */
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "Card_downvotes",
-          joinColumns = @JoinColumn(name = "card_id"),
-          inverseJoinColumns = @JoinColumn(name = "downvotes_id"))
-  private Set<User> downvotes = new LinkedHashSet<>();
+  @ElementCollection
+  @Column(name = "downvote")
+  @CollectionTable(name = "Card_downvotes", joinColumns = @JoinColumn(name = "owner_id"))
+  private Set<Long> downvotes = new LinkedHashSet<>();
 
   /**
    * Cards are always created for specific lectures

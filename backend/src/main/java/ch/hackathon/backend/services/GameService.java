@@ -7,6 +7,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.time.Instant;
 import java.util.*;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -27,7 +29,8 @@ public class GameService {
     private final ValidationEventRepository validationEventRepository;
     private final BingoRepository bingoRepository;
 
-
+    //Used for clickCard.
+    private Lock lock = new ReentrantLock();
 
     public Optional<Game> getById(long id) { return gameRepository.findById(id); };
 
@@ -96,6 +99,9 @@ public class GameService {
      * @param pos The position of the card in the bingo table.
      */
     public void clickCard(User user, Integer pos) {
+        lock.lock(); //Lock our private lock, to ensure no weird things will happen.
+        //Note: this method relies on the assumption, that only one thread at a time executes it.
+
         //Get Game, Participant and card.
         Optional<Game> optGame = getCurrentGameForUser(user);
         Game game = optGame.orElseThrow(() -> new IllegalArgumentException("No current Game with given User"));
@@ -122,8 +128,9 @@ public class GameService {
         }
 
         //Time Window is still active.
-        //Check if threshold amount of users already reached
+        //Check if threshold amount of users already reached.
         if(valEv.getClickedCard().size() >= valEv.getPercentNeeded() * game.getParticipants().size()){
+            //Thus only update Bingo of given player.
             //Increment value at pos and save the bingo.
             List<Integer> ntVal = p.getBingo().getNtValidated();
             ntVal.set(pos, ntVal.get(pos) + 1);
@@ -141,8 +148,10 @@ public class GameService {
         validationEventRepository.save(valEv);
         //Check again if threshold amount reached now.
         if(valEv.getClickedCard().size() >= valEv.getPercentNeeded() * game.getParticipants().size()){
+            //The given user is the threshold user: Validate all clicks that happened since event was set up.
             incCardValidated(valEv.getClickedCard(), card, game);
         }
+        lock.unlock(); //Unlock our private lock.
     }
 
     /**
@@ -150,8 +159,10 @@ public class GameService {
      * Does this by incrementing the corresponding ntValidates-entry of the given card in the users bingo.
      */
     private void incCardValidated(Set<User> users, Card card, Game game) {
+       //Get all the participants corresponding to the given users.
         List<Participant> incParticipants = game.getParticipants().stream().filter(p -> users.contains(p.getUser())).toList();
         for(Participant p : incParticipants) {
+            //Get position of bingoCard, and increment the value of ntValidated.
             int pos = p.getBingo().getCards().indexOf(card);
             List<Integer> ntVal = p.getBingo().getNtValidated();
             ntVal.set(pos, ntVal.get(pos) + 1);
