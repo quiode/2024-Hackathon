@@ -152,9 +152,13 @@ public class GameService {
             if (valEv.getClickedCard().size() >= valEv.getPercentNeeded() * game.getParticipants().size()) {
                 //Thus only update Bingo of given player.
                 //Increment value at pos and save the bingo.
-                List<Integer> ntVal = p.getBingo().getNtValidated();
+                Bingo bingo = p.getBingo();
+
+                List<Integer> ntVal = bingo.getNtValidated();
                 ntVal.set(pos, ntVal.get(pos) + 1);
-                bingoRepository.save(p.getBingo());
+                bingo.setNtValidated(ntVal);
+
+                bingoRepository.save(bingo);
 
                 //Add user to clickedCards of valEv, and save valEv.
                 valEv.getClickedCard().add(user);
