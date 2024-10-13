@@ -1,7 +1,5 @@
 package ch.hackathon.backend.models;
 
-import java.util.*;
-
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,10 +45,10 @@ public class Game {
   private Set<ValidationEvent> validationEvents = new LinkedHashSet<>();
 
   @ManyToMany
-  @JoinTable(name = "Game_cardPool",
+  @JoinTable(name = "Game_cards",
           joinColumns = @JoinColumn(name = "game_id"),
-          inverseJoinColumns = @JoinColumn(name = "cardPool_id"))
-  private List<Card> cardPool = new ArrayList<>();
+          inverseJoinColumns = @JoinColumn(name = "cards_id"))
+  private List<Card> cards = new ArrayList<>();
 
   @Column(name = "bingoWidth", nullable = false)
   private Integer bingoWidth;
