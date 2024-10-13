@@ -1,9 +1,8 @@
 <div>
   <div 
-    class="border-2 border-gray-600 dark:border-gray-400 rounded-md cursor-pointer h-100 w-100 overflow-hidden hyphens-auto aspect-square p-1 bg-gray-200 dark:bg-gray-500"
-    [ngClass]="{'bg-gray-200 dark:bg-gray-500': this.status() == 0}"
-    [ngClass]="{'bg-yellow-300 dark:bg-yellow-600': this.status() == 0  && this.isClicked()}"
-    [ngClass]="{'bg-green-300 dark:bg-green-600': this.status() > 1}"
+    class="border-2 flex items-center justify-center text-center font-bold text-xl border-gray-600 dark:border-gray-400 rounded-md cursor-pointer overflow-hidden hyphens-auto aspect-square p-1 bg-gray-200 dark:bg-gray-500"
+    [ngClass]="{'bg-gray-200 dark:bg-gray-500': !this.isClicked()}"
+    [ngClass]="{'bg-green-300 dark:bg-green-600': this.isClicked()}"
     (click)="clickCard()"
   >
     {{ this.card().text }}

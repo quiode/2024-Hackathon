@@ -12,22 +12,20 @@ import { Bingo } from '../../../shared/models/Bingo';
   styleUrl: './board-tile.component.css'
 })
 export class BoardTileComponent  {
-  status: Signal<number>;
+  // status: Signal<number>;
   isClicked = signal<boolean>(false);
   card = input.required<Card>();
   pos = input.required<number>();
 
-  board: Signal<Bingo | undefined>;
+  // board: Signal<Bingo | undefined>;
 
   constructor(private gameService: GameService) {
-    this.board = gameService.setBoard();
-    this.status = computed(() => this.board()!.ntValidated[this.pos()])
+    // this.board = gameService.setBoard();
+    // this.status = computed(() => this.board()!.ntValidated[this.pos()])
   }
 
   clickCard() {
-    this.gameService.clickCard(this.pos());
-    if (this.board()!.ntValidated[this.pos()] == 0) {
-      this.isClicked.set(true);
-    }
+    // this.gameService.clickCard(this.pos());
+    this.isClicked.set(true);
   }
 }
