@@ -28,7 +28,7 @@ export class GameService {
   }
 
   getGame(id: number) :Observable<Game> {
-    return this.http.get<Game>(backendURL() + '');
+    return this.http.get<Game>(backendURL() + '/game/' + id);
   }
 
   setGame(id: number) {

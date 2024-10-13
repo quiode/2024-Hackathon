@@ -17,6 +17,7 @@ export class GameComponent {
 
   constructor(private gameService: GameService, private route: ActivatedRoute, private router: Router) {
     if (route.snapshot.firstChild == null) {
+      console.log("was here")
       router.navigate([""]);
       this.game = signal(undefined);
     }
