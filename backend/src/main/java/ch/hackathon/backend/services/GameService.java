@@ -90,7 +90,7 @@ public class GameService {
         for (var tf: potentialTimeframes) {
             List<Game> potentialGames = gameRepository.findAllByLectureTimeframe(tf);
             for (Game game: potentialGames) {
-                if (game.getUsers().stream().anyMatch(u -> u.getId().equals(user.getId()))) {
+                if (game.getParticipants().stream().anyMatch(u -> u.getUser().getId().equals(user.getId()))) {
                     return Optional.of(game);
                 }
             }

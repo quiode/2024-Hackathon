@@ -37,10 +37,10 @@ public class Game {
   private LectureTimeframe lectureTimeframe;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name = "game_users",
-          joinColumns = @JoinColumn(name = "user_id"),
+  @JoinTable(name = "game_participants",
+          joinColumns = @JoinColumn(name = "participant_id"),
           inverseJoinColumns = @JoinColumn(name = "game_id"))
-  private Set<User> users;
+  private Set<Participant> participants;
 
   @ManyToMany
   @JoinTable(name = "Game_cardPool",
