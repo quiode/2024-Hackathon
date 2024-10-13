@@ -14,7 +14,7 @@
       <app-lecture-timeframe [lectureTimeframe]="next()"></app-lecture-timeframe>
     </div>
     @if(upcoming()) {
-      <div (click)="joinGame()" class="select-none bg-green-500 flex flex-row items-center justify-center gap-2 px-3 rounded-md border-2 border-green-200 cursor-pointer">
+      <div (click)="joinGame()" class="select-none z-10 bg-green-500 flex flex-row items-center justify-center gap-2 px-3 rounded-md border-2 border-green-200 cursor-pointer">
         <span>Join Game!</span>
         <fa-icon size="sm" [icon]="faArrowRight"></fa-icon>
       </div>
