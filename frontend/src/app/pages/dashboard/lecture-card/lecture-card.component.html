@@ -7,8 +7,8 @@
   <div class="flex justify-between px-1.5">
     <div class="h-full flex flex-col justify-center">
       <div class="mb-1">
-        @for (prof of lecture().professors; track prof.id) {
-          <span>{{ prof.name }}</span>
+        @for (prof of lecture().professors; track prof.id; let last = $last) {
+          <span>{{ prof.name }}{{ last ? '' : ', ' }}</span>
         }
       </div>
       <app-lecture-timeframe [lectureTimeframe]="next()"></app-lecture-timeframe>
