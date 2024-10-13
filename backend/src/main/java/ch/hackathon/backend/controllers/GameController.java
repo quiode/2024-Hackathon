@@ -26,7 +26,7 @@ public class GameController {
   private final LectureService lectureService;
 
   @PostMapping("/lecture/{id}/current")
-  public Optional<Long> createGame(@RequestAttribute User user, @PathVariable Long id) {
+  public Long createGame(@RequestAttribute User user, @PathVariable Long id) {
     Optional<Lecture> lectureRes = lectureService.getById(id);
     Lecture lecture = lectureRes.orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "No lecture associated with id"));
 
@@ -39,7 +39,7 @@ public class GameController {
 
     // FIXME: actually let the user/timeframe decide which professor is currently holding the lecture
     return gameService.createGame(lecture, lecture.getProfessors().stream().findAny().get(), currentTF)
-            .map(g -> g.getId());
+            .map(g -> g.getId()).orElse(null);
   }
 
   @GetMapping("/lecture/{id}/current")
