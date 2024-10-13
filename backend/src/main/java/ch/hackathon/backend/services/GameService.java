@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 public class GameService {
     private static final int BINGO_SIZE = 4;
     private static final double VALIDATION_PERCENT_NEEDED = 0.5;
-    private static final long VALIDATION_TIME_SECONDS = 20;
+    private static final long VALIDATION_TIME_SECONDS = 5;
     private final GameRepository gameRepository;
     private final LectureTimeframeRepository lectureTimeframeRepository;
     private final CardRepository cardRepository;
