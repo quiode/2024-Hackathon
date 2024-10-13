@@ -9,6 +9,7 @@ import { Game } from '../models/Game';
 })
 export class GameService {
   private game = signal<Game | null>(null);
+  private liveGame = signal
 
   constructor(private http: HttpClient) { }
 
@@ -27,7 +28,11 @@ export class GameService {
       professor: {
         id: 1, 
         name: 'Ueli'
-      }
+      },
+      users: [],
+      cardpool: [],
+      bingoWidth: 4,
+      bingoHeight: 4
     } satisfies Game)
   }
 
@@ -41,7 +46,7 @@ export class GameService {
   }
 
   joinGame() {
-
+    let game = signal<Game | undefined>(undefined);
   }
 
   getBoard() {
