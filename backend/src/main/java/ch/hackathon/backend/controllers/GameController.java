@@ -62,4 +62,10 @@ public class GameController {
     );
     return userService.joinGame(user, id);
   }
+
+  @PostMapping("/clickcard/{pos}")
+  public void clickCard(@RequestAttribute User user, @PathVariable Integer pos) {
+    //DOES NOT DO ANYTHING AT THE MOMENT.
+    gameService.clickCard(user, pos);
+  }
 }

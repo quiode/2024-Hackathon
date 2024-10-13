@@ -42,14 +42,6 @@ public class Bingo {
   private List<Card> cards = new ArrayList<>();
 
   /**
-   * Card was marked by the user and still is.
-   */
-  @ElementCollection
-  @Column(name = "marked")
-  @CollectionTable(name = "Bingo_marked", joinColumns = @JoinColumn(name = "owner_id"))
-  private List<Boolean> marked = new ArrayList<>();
-
-  /**
    * The number of times a card was marked by a user and validated: Often only 0 or 1.
    * (Idea: "ntValidated.get(index)++;" if validated)
    */

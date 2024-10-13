@@ -25,7 +25,11 @@ public class BingoService {
         cards = cards.subList(0, width*height);
 
         //Create Bingo
-        Bingo bingo = new Bingo(null, width, height, cards, new ArrayList<>(), new ArrayList<>());
+        List<Integer> ntValidated = new ArrayList<>(width*height);
+        for(int i = 0; i <= width*height; i++){
+            ntValidated.add(0);
+        }
+        Bingo bingo = new Bingo(null, width, height, cards, ntValidated);
 
         return bingoRepository.save(bingo);
     }
