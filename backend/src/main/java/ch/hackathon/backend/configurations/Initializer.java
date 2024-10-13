@@ -99,16 +99,82 @@ public class Initializer {
                 }
                 userRepository.saveAll(users);
 
-                // add cards to ueli
+                // Ueli
                 cardService.createCard(users.getFirst(), "Glasklar!", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
-                cardService.createCard(users.getFirst(), "Quantenquark!", ueli.getId(),
+                cardService.createCard(users.getFirst(), "Kapitel 6!", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
-                cardService.createCard(users.getFirst(), "Thermodramatik!", ueli.getId(),
+                cardService.createCard(users.getFirst(), "55 Stunden Woche", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
-                cardService.createCard(users.getFirst(), "Chaosologe!", ueli.getId(),
+                cardService.createCard(users.getFirst(), "in der Mittelschule gelernt", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
-                cardService.createCard(users.getFirst(), "Entropieparty!", ueli.getId(),
+                cardService.createCard(users.getFirst(), "ignoriert Fragen von hinten", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "nicht die richtige Idee", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "putzt Tafel zum dritten Mal", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Äquivalenzklassen", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "modulo 11", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "modulo 13", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "modulo 2", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Bob", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Alice", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "RSA", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Schlüssel", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Gruppe", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Monoid", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Ring", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Körper", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Ordnungsrelation", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Relation", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Transitiviät", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Reflexivität", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Symmetrie", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Assymmetrie", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "Fehler an der Tafel", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                cardService.createCard(users.getFirst(), "muss um Ruhe bitten", ueli.getId(),
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                // Bandeira
+                // cardService.createCard(users.getFirst(), "Skinnny Tall", ueli.getId(),
+                        // linalg.getProfessors().stream().findFirst().orElseThrow().getId());
+                // cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                //         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                // cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                //         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                // cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                //         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                // cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                //         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                // cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                //         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                // cardService.createCard(users.getFirst(), "Total Falsch!", ueli.getId(),
+                //         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+
+
+                
+                /* cardService.createCard(users.getFirst(), "Entropieparty!", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
                 cardService.createCard(users.getFirst(), "Schwerkraftspaß!", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
@@ -141,7 +207,7 @@ public class Initializer {
                 cardService.createCard(users.getFirst(), "Wärmeparadox!", ueli.getId(),
                         ueli.getProfessors().stream().findFirst().orElseThrow().getId());
                 cardService.createCard(users.getFirst(), "Sinnfrequenz!", ueli.getId(),
-                        ueli.getProfessors().stream().findFirst().orElseThrow().getId());
+                        ueli.getProfessors().stream().findFirst().orElseThrow().getId()); */
 
             } catch (Exception e) {
                 log.info(e.getMessage());
