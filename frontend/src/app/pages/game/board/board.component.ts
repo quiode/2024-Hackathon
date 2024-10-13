@@ -1,7 +1,7 @@
-import { Component, Input, signal, Signal } from '@angular/core';
+import { Component, input, Input, signal, Signal } from '@angular/core';
 import { BoardTileComponent } from "../board-tile/board-tile.component";
 import { GameService } from '../../../shared/services/game.service';
-import { Game } from '../../../shared/models/Game';
+import { Bingo } from '../../../shared/models/Bingo';
 
 @Component({
   selector: 'app-board',
@@ -11,10 +11,8 @@ import { Game } from '../../../shared/models/Game';
   styleUrl: './board.component.css'
 })
 export class BoardComponent {
-  board;
-
-  @Input() game: Signal<Game | undefined> = signal(undefined);
+  board: Signal<Bingo | undefined>;
   constructor(private gameService: GameService) {
-    this.board = this.gameService.getBoard();
+    this.board = this.gameService.setBoard();
   }
 }

@@ -1,27 +1,29 @@
 import { Component, signal, Signal } from '@angular/core';
 import { GameService } from '../../shared/services/game.service';
-import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BoardComponent } from './board/board.component';
 import { Game } from '../../shared/models/Game';
+import { LectureTimeframeComponent } from "../../components/lecture-timeframe/lecture-timeframe.component";
 
 @Component({
   selector: 'app-game',
   standalone: true,
-  imports: [BoardComponent],
+  imports: [BoardComponent, LectureTimeframeComponent],
   templateUrl: './game.component.html',
   styleUrl: './game.component.css'
 })
 export class GameComponent {
-  game: Signal<Game | undefined> = signal(undefined);
+  game: Signal<Game | undefined>;
 
   constructor(private gameService: GameService, private route: ActivatedRoute, private router: Router) {
     if (route.snapshot.firstChild == null) {
       router.navigate([""]);
+      this.game = signal(undefined);
     }
     else {
       let id = route.snapshot.firstChild.params['id'];
-      this.game = toSignal(this.gameService.getGame(id));
+      gameService.setGame(id);
+      this.game = gameService.getCurrentGame();
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { GameService } from '../../../shared/services/game.service';
 import { Card } from '../../../shared/models/Card';
 import { CommonModule } from '@angular/common';
@@ -11,41 +11,15 @@ import { CommonModule } from '@angular/common';
   styleUrl: './board-tile.component.css'
 })
 export class BoardTileComponent {
-  tile: Card;
   @Input() status: number;
+  card = input.required<Card>();
+  pos = input.required<number>();
 
   constructor(private gameService: GameService) {
     this.status = 0;
-    this.tile = {
-      id: 1,
-      text: "test",
-      creationDate: '',
-      creator: {
-        id: 1,
-        name: "test",
-        mail: "test",
-        lectures: [], // TODO
-        currentGame: null // TODO
-      },
-      upvotes: [],
-      downvotes: [],
-      lecture: {
-        id: 1,
-        name: "test",
-        professors: [],
-        dates: []
-      },
-      professor: {
-        id: 1,
-        name: "test"
-      }
-
-    }
   }
 
-  selectTile() {
-    if (this.status < 2) {
-      this.status += 1;
-    }
+  clickCard() {
+    this.gameService.clickCard(this.pos());
   }
 }

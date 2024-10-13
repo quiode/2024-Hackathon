@@ -6,5 +6,4 @@ export interface User {
   name: string;
   mail: string;
   lectures: Lecture[];
-  currentGame: Game | null;
 }

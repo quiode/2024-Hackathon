@@ -1,0 +1,8 @@
+@if (start() && end()) {
+  <div class="text-xs">
+    @if (showWeekdays()) {
+      <span>{{ getWeekDay(start()!.getDay()) }}</span>
+    }
+    {{ ('0' + start()!.getHours()).substr(-2) }}:{{ ('0' + start()!.getMinutes()).substr(-2) }} - {{ ('0' + end()!.getHours()).substr(-2) }}:{{ ('0' + end()!.getMinutes()).substr(-2) }}
+  </div>
+}

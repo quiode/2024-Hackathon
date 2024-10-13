@@ -1,12 +1,9 @@
-import { Card } from './Card';
-import { Game } from './Game';
-import { User } from './User';
+import { Card } from "./Card";
 
 export interface Bingo {
- id: number;
- owner: User;
- game: Game;
- height: number;
- width: number;
- cardMatrix: Card[];
+  id: number,
+  width: number,
+  height: number,
+  cards: Card[],
+  ntValidated: number[],
 }

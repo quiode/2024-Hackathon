@@ -1,5 +1,10 @@
 <div class="p-3">
-  <div class="text-xl font-bold">{{ game()?.lecture?.name }}</div>
-  <div>{{ game()?.timeframe?.startDate }}-{{ game()?.timeframe?.endDate }}</div>
-  <app-board [game]="this.game"></app-board>
+  @if(game()) {
+    <div class="text-xl font-bold">{{ game()?.lecture?.name }}</div>
+    <app-lecture-timeframe [lectureTimeframe]="game()?.lectureTimeframe" [showWeekdays]="false"></app-lecture-timeframe>
+    <app-board></app-board>
+  }
+  @else {
+    <div>Could not join game. Try again!</div>
+  }
 </div>

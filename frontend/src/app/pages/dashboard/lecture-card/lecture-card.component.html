@@ -11,12 +11,7 @@
           <span>{{ prof.name }}</span>
         }
       </div>
-      <div
-        class="text-xs"
-      >
-        <span>{{ getWeekDay(next()[0]?.getDay()) }}</span>
-        {{ ('0' + next()[0]?.getHours()).substr(-2) }}:{{ ('0' + next()[0]?.getMinutes()).substr(-2) }} - {{ ('0' + next()[1]?.getHours()).substr(-2) }}:{{ ('0' + next()[1]?.getMinutes()).substr(-2) }}
-      </div>
+      <app-lecture-timeframe [lectureTimeframe]="next()"></app-lecture-timeframe>
     </div>
     @if(upcoming()) {
       <div (click)="joinGame()" class="select-none bg-green-500 flex flex-row items-center justify-center gap-2 px-3 rounded-md border-2 border-green-200 cursor-pointer">

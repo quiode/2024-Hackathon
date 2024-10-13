@@ -1,16 +1,16 @@
 import { Card } from "./Card";
 import { Lecture } from "./Lecture";
 import { LectureTimeframe } from './LectureTimeframe';
+import { Participant } from "./Participant";
 import { Professor } from './Professor';
-import { User } from "./User";
 
 export interface Game {
   id: number,
   lecture: Lecture,
   professor: Professor,
-  timeframe: LectureTimeframe,
-  users: User[],
-  cardpool: Card[],
+  lectureTimeframe: LectureTimeframe,
+  participants: Participant[],
+  cardPool: Card[],
   bingoWidth: number,
   bingoHeight: number
 }
