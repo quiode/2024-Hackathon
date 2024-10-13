@@ -45,8 +45,12 @@ public class UserService {
     Optional<Game> gameOpt = gameRepository.findById(gameId);
     if (gameOpt.isPresent()) {
       Game game = gameOpt.get();
-      Participant participant = participantService.createParticipant(user, game.getBingoWidth(), game.getBingoHeight(), game.getCardPool());
-      game.getParticipants().add(participant);
+
+      if (game.getParticipants().stream().noneMatch(participant -> participant.getUser().equals(user))) {
+        Participant participant = participantService.createParticipant(user, game.getBingoWidth(), game.getBingoHeight(), game.getCardPool());
+        game.getParticipants().add(participant);
+      }
+
       gameRepository.save(game);
       return game;
     } else {
