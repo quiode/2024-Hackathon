@@ -46,11 +46,12 @@ export class LectureCardComponent {
       next: (v) => {
         if (v != null) {
           this.gameService.joinGame(v.id);
+          this.router.navigate(["game", v.id])
         }
         else {
           this.gameService.createGame(this.lecture().id).subscribe({
             next: (v) => {
-              console.log(v)
+              this.gameService.joinGame(v)
               this.router.navigate(["game", v])
             },
             error: (e) => console.error(e)
