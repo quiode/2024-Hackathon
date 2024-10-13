@@ -48,7 +48,11 @@ public class GameController {
       () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "No lecture with specified id")    
     );
     return gameService.getCurrentGameForLecture(lecture);
-    
+  }
+
+  @GetMapping("/{gameId}")
+  public Optional<Game> getGameByGameId(@PathVariable Long gameId) {
+    return gameService.getById(gameId);
   }
 
   @PostMapping("/join/{id}")
