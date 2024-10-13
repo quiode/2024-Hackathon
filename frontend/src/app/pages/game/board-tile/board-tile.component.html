@@ -1,9 +1,9 @@
 <div>
   <div 
     class="border-2 border-gray-600 dark:border-gray-400 rounded-md cursor-pointer h-100 w-100 overflow-hidden hyphens-auto aspect-square p-1 bg-gray-200 dark:bg-gray-500"
-    [ngClass]="{'bg-gray-200 dark:bg-gray-500': status == 0}"
-    [ngClass]="{'bg-yellow-300 dark:bg-yellow-600': status == 1}"
-    [ngClass]="{'bg-green-300 dark:bg-green-600': status == 2}"
+    [ngClass]="{'bg-gray-200 dark:bg-gray-500': status() == 0}"
+    [ngClass]="{'bg-yellow-300 dark:bg-yellow-600': status() == 1}"
+    [ngClass]="{'bg-green-300 dark:bg-green-600': status() == 2}"
     (click)="clickCard()"
   >
     {{ this.card().text }}
