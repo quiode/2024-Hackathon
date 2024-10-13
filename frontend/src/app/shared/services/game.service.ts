@@ -54,7 +54,6 @@ export class GameService {
   }
 
   setBoard() {
-    let id = -1;
     this.userService.getUser().subscribe((v) => {
       console.log(v)
       if (!this.game()) return;
