@@ -1,4 +1,4 @@
-import { Component, input, Input, Signal } from '@angular/core';
+import { Component, computed, input, Input, signal, Signal } from '@angular/core';
 import { GameService } from '../../../shared/services/game.service';
 import { Card } from '../../../shared/models/Card';
 import { CommonModule } from '@angular/common';
@@ -12,18 +12,22 @@ import { Bingo } from '../../../shared/models/Bingo';
   styleUrl: './board-tile.component.css'
 })
 export class BoardTileComponent  {
-  @Input() status: number;
+  status: Signal<number>;
+  isClicked = signal<boolean>(false);
   card = input.required<Card>();
   pos = input.required<number>();
 
   board: Signal<Bingo | undefined>;
 
   constructor(private gameService: GameService) {
-    this.status = 0;
     this.board = gameService.setBoard();
+    this.status = computed(() => this.board()!.ntValidated[this.pos()])
   }
 
   clickCard() {
     this.gameService.clickCard(this.pos());
+    if (this.board()!.ntValidated[this.pos()] == 0) {
+      this.isClicked.set(true);
+    }
   }
 }
