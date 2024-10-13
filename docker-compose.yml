@@ -10,7 +10,7 @@ services:
       - 8080
     environment:
       - DB_DOMAIN=db
-      - PROD=true
+      - PROD=false # Disable prod to init db
     labels:
       traefik.enable: true
       traefik.http.routers.backend.entrypoints: web
