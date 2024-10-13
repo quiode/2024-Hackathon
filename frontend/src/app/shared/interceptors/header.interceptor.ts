@@ -15,7 +15,7 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
       headers: reqWithHeader.headers.set('X-authentik-name', 'Dominik Schwaiger'),
     });
     reqWithHeader = reqWithHeader.clone({
-      headers: reqWithHeader.headers.set('X-authentik-email', 'dschwaiger@ethz.ch'),
+      headers: reqWithHeader.headers.set('X-authentik-email', 'dschwaiger@student.ethz.ch'),
     });
   }
 
