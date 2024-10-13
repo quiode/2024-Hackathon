@@ -17,7 +17,7 @@ export class GameService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getGameByLecture(lectureId: number) : Observable<Game> {
-    return this.http.get<Game>('/game/lecture/' + lectureId + '/current');
+    return this.http.get<Game>(backendURL() + '/game/lecture/' + lectureId + '/current');
   }
 
   setGameByLecture(lectureId: number) {
@@ -27,65 +27,8 @@ export class GameService {
     })
   }
 
-  getGame(id: number) {
-    const tc: Card = {
-      id: 1,
-      text: 'gehtauchsoiglolhahaha',
-      creationDate: new Date().toUTCString(),
-      creator: {
-        id: 1,
-        mail: 'test@ethz.ch',
-        name: 'Diese Daten haben alle lol',
-        lectures: []
-      },
-      upvotes: [],
-      downvotes: [],
-      lecture: {
-        id: 1,
-        name: 'leck mich',
-        professors: [],
-        dates: []
-      },
-      professor: {
-        id: 1,
-        name: 'test',
-      }
-    };
-    return of({
-      id: 1,
-      lectureTimeframe: {startDate: new Date().toUTCString(), endDate: new Date().toUTCString(), id: 1},
-      lecture: {
-        dates: [],
-        id: 1,
-        name: 'Mathematische Funktion der Physik',
-        professors: []
-      },
-      professor: {
-        id: 1, 
-        name: 'Ueli'
-      },
-      participants: [
-        {
-          id: 1,
-          user: {
-            id: 1,
-            mail: 'test@ethz.ch',
-            name: 'Diese Daten haben alle lol',
-            lectures: []
-          },
-          bingo: {
-            id: 1,
-            width: 4,
-            height: 4,
-            cards: Array(16).fill(tc),
-            ntValidated: Array(16).fill(0)
-          }
-        }
-      ],
-      cardPool: [],
-      bingoWidth: 4,
-      bingoHeight: 4
-    } satisfies Game);
+  getGame(id: number) :Observable<Game> {
+    return this.http.get<Game>(backendURL() + '');
   }
 
   setGame(id: number) {
@@ -100,11 +43,11 @@ export class GameService {
   }
 
   createGame(lectureId: number) : Observable<number> {
-    return this.http.post<number>('/game/lecture/' + lectureId + '/current', {});
+    return this.http.post<number>(backendURL() + '/game/lecture/' + lectureId + '/current', {});
   }
 
   joinGame(id: number) {
-    this.http.post<Game>('/game/join/' + id, {}).subscribe({
+    this.http.post<Game>(backendURL() + '/game/join/' + id, {}).subscribe({
       next: (v) => this.game.set(v),
       error: (e: Error) => console.error(e),
     });
@@ -124,7 +67,7 @@ export class GameService {
   }
 
   clickCard(pos: number) {
-    this.http.post('/game/clickcard/' + pos, {}).subscribe({
+    this.http.post(backendURL() + '/game/clickcard/' + pos, {}).subscribe({
       error: (e) => console.error(e),
     });
   }

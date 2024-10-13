@@ -44,18 +44,17 @@ export class LectureCardComponent {
   joinGame() {
     this.gameService.getGameByLecture(this.lecture().id).subscribe({
       next: (v) => {
-        this.gameService.joinGame(v.id);
+        if (v != null) this.gameService.joinGame(v.id);
+        else {
+          this.gameService.createGame(this.lecture().id).subscribe({
+            next: (v) => {
+              this.router.navigate(["game", v])
+            },
+            error: (e) => console.error(e)
+          });
+        }
       },
-      error: (e) => {
-        this.gameService.createGame(this.lecture().id).subscribe({
-          next: (v) => {
-            this.router.navigate(["game", v])
-          },
-          error: (e) => {
-            this.router.navigate(["game", 1])
-          }
-        });
-      }
+      error: (e) => console.error(e)
     });
   }
 
