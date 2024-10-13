@@ -8,6 +8,7 @@ import ch.hackathon.backend.repositories.ParticipantRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @RequiredArgsConstructor
@@ -16,7 +17,7 @@ public class ParticipantService {
     private final ParticipantRepository participantRepository;
     private final BingoService bingoService;
 
-    public Participant createParticipant(User user, int bingoWidth, int bingoHeight, Set<Card> cardPool) {
+    public Participant createParticipant(User user, int bingoWidth, int bingoHeight, List<Card> cardPool) {
         Bingo bingo = bingoService.createBingo(bingoWidth, bingoHeight, cardPool);
         Participant participant = new Participant(null, user, bingo);
         return participantRepository.save(participant);

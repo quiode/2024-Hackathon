@@ -16,7 +16,7 @@ import java.util.Set;
 public class BingoService {
     private final BingoRepository bingoRepository;
 
-    public Bingo createBingo(int width, int height, Set<Card> cardPool) {
+    public Bingo createBingo(int width, int height, List<Card> cardPool) {
 
         //Get cards and shuffle them.
         List<Card> cards = new ArrayList<>(cardPool);

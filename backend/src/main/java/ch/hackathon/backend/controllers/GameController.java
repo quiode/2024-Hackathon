@@ -38,8 +38,8 @@ public class GameController {
       .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "No current timeframe for lecture"));
 
     // FIXME: actually let the user/timeframe decide which professor is currently holding the lecture
-    return gameService.createGame(lecture, lecture.getProfessors().stream().findAny().get(), currentTF)
-            .map(g -> g.getId()).orElse(null);
+    return gameService.createGame(lecture, lecture.getProfessors().stream().findAny().orElse(null), currentTF)
+            .map(Game::getId).orElse(null);
   }
 
   @GetMapping("/lecture/{id}/current")

@@ -45,12 +45,10 @@ public class GameService {
                     BINGO_SIZE);
         // FIXME: this is terribly inefficient
         List<Card> cards = cardRepository.findAll();
-        cards.sort(new Comparator<Card>() {
-            public int compare(Card c1, Card c2) {
-                int voteDeltaC1 = c1.getUpvotes().size() - c1.getDownvotes().size();
-                int voteDeltaC2 = c2.getUpvotes().size() - c2.getDownvotes().size();
-                return voteDeltaC2 - voteDeltaC1;
-            }
+        cards.sort((c1, c2) -> {
+            int voteDeltaC1 = c1.getUpvotes().size() - c1.getDownvotes().size();
+            int voteDeltaC2 = c2.getUpvotes().size() - c2.getDownvotes().size();
+            return voteDeltaC2 - voteDeltaC1;
         });
         List<Card> cardMatrix = cards.stream()
                 .limit(BINGO_SIZE * BINGO_SIZE)
@@ -61,7 +59,7 @@ public class GameService {
 
 
         Game game = new Game(null, lecture, professor, timeframe, new HashSet<>(), new HashSet<>(),
-                new HashSet<>(cardMatrix), BINGO_SIZE, BINGO_SIZE);
+                cardMatrix, BINGO_SIZE, BINGO_SIZE);
         return Optional.of(gameRepository.save(game));
     }
 

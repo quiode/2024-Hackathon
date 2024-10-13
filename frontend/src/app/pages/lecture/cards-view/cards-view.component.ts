@@ -70,11 +70,11 @@ export class CardsViewComponent {
   }
 
   hasUpvoted(card: Card) {
-    return card.upvotes.some(val => this.user()?.id == val.id);
+    return card.upvotes.some(val => this.user()?.id == val);
   }
 
   hasDownvoted(card: Card) {
-    return card.downvotes.some(val => this.user()?.id == val.id);
+    return card.downvotes.some(val => this.user()?.id == val);
   }
 
   onSubmitCard() {
