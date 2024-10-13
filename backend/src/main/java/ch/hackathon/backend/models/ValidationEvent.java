@@ -34,7 +34,7 @@ public class ValidationEvent {
     @Column(name = "period_seconds", nullable = false)
     private Long periodSeconds;
 
-    @Column(name = "start_time", nullable = false)
+    @Column(name = "start_time", nullable = false, unique = true)
     private Instant startTime;
 
     @ManyToMany(fetch = FetchType.EAGER)

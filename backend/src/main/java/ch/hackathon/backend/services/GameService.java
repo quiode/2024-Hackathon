@@ -4,6 +4,7 @@ import ch.hackathon.backend.models.*;
 import ch.hackathon.backend.repositories.*;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.javatuples.Pair;
 import org.springframework.stereotype.Service;
 
 import java.time.Instant;
@@ -186,5 +187,24 @@ public class GameService {
             ntVal.set(pos, ntVal.get(pos) + 1);
             bingoRepository.save(p.getBingo());
         }
+    }
+
+    /**
+     * Create ValidationEvent by adding a new one to game and saving the game
+     */
+    public Pair<Game, ValidationEvent> createValidationEvent(Game game, Card card) {
+        Instant startTime = Instant.now();
+
+        ValidationEvent event = new ValidationEvent(null, card, VALIDATION_PERCENT_NEEDED, VALIDATION_TIME_SECONDS,
+                startTime, new HashSet<>());
+        game.getValidationEvents().add(event);
+
+        game = gameRepository.save(game);
+
+        return Pair.with(game, game.getValidationEvents()
+                .stream()
+                .filter(validationEvent -> validationEvent.getStartTime().equals(startTime))
+                .findFirst()
+                .orElseThrow());
     }
 }
