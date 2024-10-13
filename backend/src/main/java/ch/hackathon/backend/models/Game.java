@@ -3,14 +3,15 @@ package ch.hackathon.backend.models;
 import java.util.*;
 
 import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -45,7 +46,7 @@ public class Game {
   @JoinColumn(name = "game_id", nullable = false)
   private Set<ValidationEvent> validationEvents = new LinkedHashSet<>();
 
-  @ManyToMany(fetch = FetchType.EAGER)
+  @ManyToMany
   @JoinTable(name = "Game_cardPool",
           joinColumns = @JoinColumn(name = "game_id"),
           inverseJoinColumns = @JoinColumn(name = "cardPool_id"))
