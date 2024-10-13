@@ -6,6 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Router } from '@angular/router';
 import { LectureTimeframeComponent } from "../../../components/lecture-timeframe/lecture-timeframe.component";
 import { LectureTimeframe } from '../../../shared/models/LectureTimeframe';
+import { GameService } from '../../../shared/services/game.service';
 
 @Component({
   selector: 'app-lecture-card',
@@ -21,7 +22,7 @@ export class LectureCardComponent {
   end = "";
   next: Signal<LectureTimeframe | undefined>;
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private gameService: GameService) {
     this.router = router;
     this.next = computed(() => this.getNext(this.lecture()));
   }
@@ -41,7 +42,21 @@ export class LectureCardComponent {
   }
 
   joinGame() {
-    // TODO
+    this.gameService.getGameByLecture(this.lecture().id).subscribe({
+      next: (v) => {
+        this.gameService.joinGame(v.id);
+      },
+      error: (e) => {
+        this.gameService.createGame(this.lecture().id).subscribe({
+          next: (v) => {
+            this.router.navigate(["game", v])
+          },
+          error: (e) => {
+            this.router.navigate(["game", 1])
+          }
+        });
+      }
+    });
   }
 
   getWeekDay(day: number | undefined) {

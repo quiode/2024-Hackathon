@@ -17,7 +17,7 @@ export class GameService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getGameByLecture(lectureId: number) : Observable<Game> {
-    return this.http.get<Game>(backendURL() + '/lecture/' + lectureId + '/current');
+    return this.http.get<Game>('/game/lecture/' + lectureId + '/current');
   }
 
   setGameByLecture(lectureId: number) {
@@ -99,15 +99,12 @@ export class GameService {
     return computed(() => this.game());
   }
 
-  createGame(lectureId: number) {
-    this.http.post<number>(backendURL() + '/lecture/' + lectureId + '/current', {}).subscribe({
-      next: (v) => this.joinGame(v),
-      error: (e: Error) => console.error(e),
-    });
+  createGame(lectureId: number) : Observable<number> {
+    return this.http.post<number>('/game/lecture/' + lectureId + '/current', {});
   }
 
   joinGame(id: number) {
-    this.http.post<Game>(backendURL() + '/join/' + id, {}).subscribe({
+    this.http.post<Game>('/game/join/' + id, {}).subscribe({
       next: (v) => this.game.set(v),
       error: (e: Error) => console.error(e),
     });
@@ -127,7 +124,7 @@ export class GameService {
   }
 
   clickCard(pos: number) {
-    this.http.post(backendURL() + '/clickcard/' + pos, {}).subscribe({
+    this.http.post('/game/clickcard/' + pos, {}).subscribe({
       error: (e) => console.error(e),
     });
   }
