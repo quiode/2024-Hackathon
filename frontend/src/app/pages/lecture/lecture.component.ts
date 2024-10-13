@@ -7,11 +7,13 @@ import { CardAddDto, CardService } from '../../shared/services/card.service';
 import { Lecture } from '../../shared/models/Lecture';
 import { Game } from '../../shared/models/Game';
 import { GameService } from '../../shared/services/game.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faUser, faClock } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-lecture',
   standalone: true,
-  imports: [CardsViewComponent],
+  imports: [CardsViewComponent, FontAwesomeModule],
   templateUrl: './lecture.component.html',
   styleUrl: './lecture.component.css'
 })
@@ -47,4 +49,7 @@ export class LectureComponent {
   onCardAdd(card: CardAddDto) {
     this.cardService.addCard(card).subscribe(_ => alert('card created'));
   }
+
+  protected faUser = faUser;
+  protected faClock = faClock;
 }

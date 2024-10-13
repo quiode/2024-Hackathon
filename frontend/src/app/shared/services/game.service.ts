@@ -56,6 +56,7 @@ export class GameService {
   setBoard() {
     let id = -1;
     this.userService.getUser().subscribe((v) => {
+      console.log(v)
       if (!this.game()) return;
       for (let p of this.game()!.participants) {
         if (p.user.id === v.id) {

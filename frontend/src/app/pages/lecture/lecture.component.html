@@ -7,15 +7,21 @@
     }
   </div>
   <div class="live-game">
-    <div class="live-game-title">
-      Live Game
-    </div>
-    @if (true) {
 
-    }
-    @else {
-    <span>No current live game...</span>
-    }
+    <div class="flex flex-row justify-between w-full items-center">
+      <div class="live-game-title">
+        Live Game
+      </div>
+      @if (lectureGame()) {
+        <div class="flex flex-row items-center">
+          <fa-icon [icon]="faUser"></fa-icon>
+          <span class="ml-3 mr-1.5">{{ lectureGame()?.participants?.length }}</span>
+          <span>Participants</span>
+        </div>
+      } @else {
+        <span>No current live game...</span>
+      }
+    </div>
   </div>
 
   <div class="my-10"></div>
