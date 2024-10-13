@@ -11,12 +11,11 @@ import { CommonModule } from '@angular/common';
   styleUrl: './board-tile.component.css'
 })
 export class BoardTileComponent {
-  @Input() status: number;
+  status = input<number>(0);
   card = input.required<Card>();
   pos = input.required<number>();
 
   constructor(private gameService: GameService) {
-    this.status = 0;
   }
 
   clickCard() {

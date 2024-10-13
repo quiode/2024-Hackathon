@@ -1,4 +1,4 @@
-import { Component, input, Input, signal, Signal } from '@angular/core';
+import { Component, Signal } from '@angular/core';
 import { BoardTileComponent } from "../board-tile/board-tile.component";
 import { GameService } from '../../../shared/services/game.service';
 import { Bingo } from '../../../shared/models/Bingo';
